@@ -1,0 +1,8 @@
+Hi
+{% for category in categories %}
+<p>{{category.title}}, {{category.cover.url}}</p>
+{% endfor %}
+<br><br><br>
+{% for trip in trips %}
+<p>{{trip.title}}, {{trip.cover.url}}</p>
+{% endfor %}

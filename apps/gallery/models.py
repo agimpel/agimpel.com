@@ -4,9 +4,12 @@ from django.utils import timezone
 
 import os
 import uuid
+import logging
 from PIL import Image as pil_image
 from exiffield.fields import ExifField
+from slugify import slugify
 
+logger = logging.getLogger("django")
 
 def scramble_uploaded_filename(instance, filename):
     extension = filename.split(".")[-1]
@@ -54,6 +57,13 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
+    def delete(self, *args, **kwargs):
+        self.cover.delete(save=False)
+        for image in self.images.all(): image.delete()
+        super().delete(*args, **kwargs)
+
+    class Meta:
+        verbose_name_plural = "Categories"
 
 
 
@@ -66,6 +76,11 @@ class Trip(models.Model):
 
     def __str__(self):
         return self.title
+
+    def delete(self, *args, **kwargs):
+        self.cover.delete(save=False)
+        for image in self.images.all(): image.delete()
+        super().delete(*args, **kwargs)
 
 
 
@@ -92,9 +107,16 @@ class Image(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
-        # generate and set thumbnail or none
-        self.slug = self.slug_uid
+        # generate and set thumbnail
+        self.slug = slugify(self.title)
         self.thumbnail = create_thumbnail(self, self.src)
 
         # force update as we just changed something
         super().save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        self.src.delete(save=False)
+        self.thumbnail.delete(save=False)
+
+        # force update as we just changed something
+        super().delete(*args, **kwargs)
