@@ -1,0 +1,8 @@
+Category {{ category.title }}
+{% if image_list %}
+    {% for image in image_list %}
+    <img style="width:200px" src="{{ image.src.url}}">
+    {% endfor %}
+{% else %}
+    <p>No images are available.</p>
+{% endif %}
