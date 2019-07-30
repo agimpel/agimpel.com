@@ -56,7 +56,7 @@ ROOT_URLCONF = 'agimpel_com.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'agimpel_com/templates/')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -71,6 +71,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'agimpel_com.wsgi.application'
 
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "agimpel_com/static/"),
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+STATIC_URL = '/static/'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases

@@ -1,0 +1,26 @@
+$bp-max: 960px;
+$bp-large: 768px;
+$bp-medium: 600px;
+
+
+$sidenav-width_opened: 300px; //width of sidenav in opened state
+$sidenav-width_closed: 100px; //width of sidenav in closed state
+$navbar-height: 50px; //height of navbar in mobile design
+
+
+$content-1: #2b2b2b;
+$content-2: rgba(229,107,46,1);
+$content-3: rgba(86,171,214,1);
+$content-bg: rgb(236, 236, 236);
+$content-zoomout-bg: rgb(122, 122, 122);
+
+$menu-bg: rgb(32, 32, 32);
+$content-zoomout-bg: $content-bg;
+$zoomout-bg: rgb(82, 82, 82);
+
+$text-white: white;
+
+
+@import "_general";
+@import "_normalize";
+@import "_menu";
