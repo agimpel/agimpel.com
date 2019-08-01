@@ -1,6 +1,6 @@
 Hi
 {% for category in categories %}
-<p>{{category.title}}, {{category.cover.url}}</p>
+<p>{{category.title}}, {% if category.cover %}{{category.cover.url}}{% endif %}</p>
 {% endfor %}
 <br><br><br>
 {% for trip in trips %}
