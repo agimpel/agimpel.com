@@ -3,24 +3,43 @@ $bp-large: 768px;
 $bp-medium: 600px;
 
 
-$sidenav-width_opened: 300px; //width of sidenav in opened state
-$sidenav-width_closed: 100px; //width of sidenav in closed state
+$menu-width_opened: 300px; //width of sidenav in opened state
+$menu-width_closed: 50px; //width of sidenav in closed state
+$menu-width_difference: 250px;
 $navbar-height: 50px; //height of navbar in mobile design
 
 
-$content-1: #2b2b2b;
+$content-1: rgba(45, 45, 45, 1);
 $content-2: rgba(229,107,46,1);
 $content-3: rgba(86,171,214,1);
-$content-bg: rgb(236, 236, 236);
-$content-zoomout-bg: rgb(122, 122, 122);
+$content-bg: rgba(231, 229, 228, 1);
+$content-zoomout-bg: rgba(231, 229, 228, 1);
 
-$menu-bg: rgb(32, 32, 32);
+$menu-bg: rgba(45, 45, 45, 1);
 $content-zoomout-bg: $content-bg;
-$zoomout-bg: rgb(82, 82, 82);
+$zoomout-bg: rgba(51, 51, 51, 1);
 
 $text-white: white;
+$text-title: black;
+$text-title_cursor: black;
+
+
+@mixin s-up {
+    @media (min-width: 480px) { @content; }
+}
+@mixin m-up {
+    @media (min-width: 768px) { @content; }
+}
+@mixin l-up {
+    @media (min-width: 992px) { @content; }
+}
+@mixin xl-up {
+    @media (min-width: 1200px) { @content; }
+}
+
 
 
 @import "_general";
 @import "_normalize";
 @import "_menu";
+@import "_content";

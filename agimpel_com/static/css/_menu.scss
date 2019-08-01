@@ -33,8 +33,7 @@
 	width: 0;
 	height: 0;
 	background: $content-zoomout-bg;
-	content: '';
-	opacity: 0;
+	opacity: 1;
 	-webkit-transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
 	transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
 }
@@ -53,7 +52,7 @@
 	left: 0;
 	z-index: 100;
 	/* visibility: hidden; */
-	width: 300px;
+	width: $menu-width_opened;
 	height: 100%;
 	background: $menu-bg;
 	-webkit-transition: all 0.5s;
@@ -76,7 +75,7 @@
 .menu-open .menu::after {
 	width: 0;
 	height: 0;
-	opacity: 0;
+	opacity: 1;
 	-webkit-transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
 	transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
 }
@@ -137,14 +136,14 @@
 }
 
 .menu-effect.menu-open .content-pusher {
-	-webkit-transform: translate3d(0, 0, -300px);
-	transform: translate3d(0, 0, -300px);
+	-webkit-transform: translate3d(0, 0, -$menu-width_opened);
+	transform: translate3d(0, 0, -$menu-width_opened);
 }
 
 .menu-effect.menu {
 	opacity: 1;
-	-webkit-transform: translate3d(-250px, 0, 0);
-	transform: translate3d(-250px, 0, 0);
+	-webkit-transform: translate3d(-$menu-width_difference, 0, 0);
+	transform: translate3d(-$menu-width_difference, 0, 0);
 }
 
 .menu-effect.menu-open .menu-effect.menu {

@@ -34,9 +34,15 @@
 			<div class="content-pusher">
 				<div class="content">
 					<div class="content-inner">
-						<div class="main clearfix">
-                            {% block content %}
-                            {% endblock content %}
+						<div id="title" class="main clearfix">
+							<span class="title_text" data-text="Landscape Photography"></span>
+							{% block content_title %}
+							{% endblock content_title %}
+						</div>
+						<div id="main" class="main clearfix">
+                            {% block content_body %}
+							{% endblock content_body %}
+							Hier ist Text hier ist text hier ist text Hier ist Text hier ist text hier ist text Hier ist Text hier ist text hier ist text Hier ist Text hier ist text hier ist text Hier ist Text hier ist text hier ist text Hier ist Text hier ist text hier ist text Hier ist Text hier ist text hier ist text
 						</div>
 					</div>
 				</div>
@@ -45,6 +51,7 @@
 		<script src="{% static 'js/jquery.js' %}"></script>
 		<script src="{% static 'js/classie.js' %}"></script>
         <script src="{% static 'js/sidebar_effects.js' %}"></script>
+        <script src="{% static 'js/title.js' %}"></script>
         {% block add_js %}
         {% endblock add_js %}
 	</body>
