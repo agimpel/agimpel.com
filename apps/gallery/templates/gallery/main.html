@@ -1,4 +1,20 @@
 {% extends 'main.html' %}
+
 {% block add_head %}
-<style>.icon-data{background-color: blueviolet}</style>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'gallery/css/all.css' %}"> 
+    <link rel="stylesheet" href="{% static 'gallery/css/photoswipe.css' %}"> 
+    <link rel="stylesheet" href="{% static 'gallery/css/default-skin/default-skin.css' %}">
 {% endblock add_head %}
+
+{% block menu %}
+    {% include 'menu.html' with menu_active='gallery' %}
+{% endblock menu %}
+
+{% block add_foot %}
+    {% include 'gallery/photoswipe.html' %}
+    {% load static %}
+    <script src="{% static 'gallery/js/photoswipe.min.js' %}"></script> 
+    <script src="{% static 'gallery/js/photoswipe-ui-default.min.js' %}"></script>
+    <script src="{% static 'gallery/js/photoswipe_gallery.js' %}"></script>  
+{% endblock add_foot %}

@@ -1,0 +1,25 @@
+.image_title {
+    font-family: 'Montserrat', serif;
+    font-size: 18px;
+    padding-bottom: 4px;
+    font-weight: normal;
+}
+
+.image_exifinfo {
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    span {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: normal;
+    }
+}
+
+.image_more {
+    a {
+        text-decoration: underline;
+        font-family: 'Montserrat', serif;
+        font-weight: normal;
+    }
+}

@@ -11,6 +11,12 @@
 	position: relative;
 }
 
+.content-inner {
+	min-height: calc(100% - #{$footer-height});
+	margin-left: $menu-width_closed;
+	@include l-up {margin-left: 0px;}
+}
+
 .menu-container {
 	position: relative;
 	overflow: hidden;
