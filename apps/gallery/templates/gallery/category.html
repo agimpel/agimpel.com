@@ -7,7 +7,7 @@
 {% block content_body %}
 
 {% if images %}
-    <div class="image-gallery">
+    <div class="image-gallery grid">
     {% for image in images %}
         <figure style="grid-column-end: span {{ image.cols }}; grid-row-end: span {{ image.rows }}">
             <a href="{{ image.picture.url }}" data-size="{{ image.picture.width }}x{{ image.picture.height }}">

@@ -28,23 +28,20 @@
 	function init() {
 
 		var container = document.getElementById( 'menu-container' ),
-	            	reset = document.getElementById( 'closeMenu' ),
-			buttons = Array.prototype.slice.call( document.querySelectorAll( '#menu-trigger-effects > button' ) ),
-			// event type (if mobile use touch events)
+	        reset = document.getElementById( 'nav-icon' ),
+			buttons = Array.prototype.slice.call( document.querySelectorAll( '#nav-icon' ) ),
 			eventtype = mobilecheck() ? 'touchstart' : 'click',
+
 			resetMenu = function() {
 				classie.remove( container, 'menu-open' );
+				$('#nav-icon').removeClass('open');
 			},
+
 			bodyClickFn = function(evt) {
 				if( !hasParentClass( evt.target, 'menu' ) ) {
+					console.log("Hit")
 					resetMenu();
 					document.removeEventListener( eventtype, bodyClickFn );
-				}
-			},
-			resetClickFn = function(evt) {
-				if (evt.target == reset) {
-					resetMenu();
-					document.removeEventListener(eventtype, bodyClickFn);
 				}
 			};
 
@@ -52,15 +49,21 @@
 			var effect = el.getAttribute( 'data-effect' );
 
 			el.addEventListener( eventtype, function( ev ) {
+				console.log("Test")
 				ev.stopPropagation();
 				ev.preventDefault();
-				container.className = 'menu-container'; // clear
-				classie.add( container, effect );
-				setTimeout( function() {
-					classie.add( container, 'menu-open' );
-				}, 25 );
-				document.addEventListener( eventtype, bodyClickFn );
-				document.addEventListener( eventtype, resetClickFn );
+				if ( !classie.has( container, 'menu-open') ) {
+					container.className = 'menu-container'; // clear
+					classie.add( container, effect );
+					setTimeout( function() {
+						classie.add( container, 'menu-open' );
+						$('#nav-icon').addClass('open');
+					}, 25 );
+					document.addEventListener( eventtype, bodyClickFn );
+				} else {
+					resetMenu();
+					document.removeEventListener(eventtype, bodyClickFn);
+				};
 			});
 		} );
 

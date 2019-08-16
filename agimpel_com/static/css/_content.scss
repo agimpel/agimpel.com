@@ -4,12 +4,12 @@
     text-align: left;
     max-width: 95%;
     margin: auto;
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 
-    @include s-up {max-width: 92.5%;}
-    @include m-up {max-width: 90%;}
-    @include l-up {max-width: 850px;}
+    @include s-up {max-width: 92.5%; padding-top: 20px; padding-bottom: 10px;}
+    @include m-up {max-width: 90%; padding-top: 30px; padding-bottom: 30px;}
+    @include l-up {max-width: 850px; padding-top: 50px; padding-bottom: 50px;}
     @include xl-up {max-width: 1050px;}
 }
 
