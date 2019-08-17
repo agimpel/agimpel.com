@@ -39,7 +39,6 @@
 
 			bodyClickFn = function(evt) {
 				if( !hasParentClass( evt.target, 'menu' ) ) {
-					console.log("Hit")
 					resetMenu();
 					document.removeEventListener( eventtype, bodyClickFn );
 				}
@@ -49,7 +48,6 @@
 			var effect = el.getAttribute( 'data-effect' );
 
 			el.addEventListener( eventtype, function( ev ) {
-				console.log("Test")
 				ev.stopPropagation();
 				ev.preventDefault();
 				if ( !classie.has( container, 'menu-open') ) {

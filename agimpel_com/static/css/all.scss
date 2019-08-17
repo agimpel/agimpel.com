@@ -3,15 +3,16 @@ $bp-large: 768px;
 $bp-medium: 600px;
 
 
-$menu-width_opened: 300px; //width of sidenav in opened state
+$menu-width_opened: 275px; //width of sidenav in opened state
 $menu-width_closed: 50px; //width of sidenav in closed state
-$menu-width_difference: 250px;
+$menu-width_difference: 225px;
 $navbar-height: 50px; //height of navbar in mobile design
 
 $footer-height: 60px;
 
 $content-1: rgba(45, 45, 45, 1);
-$content-2: #EDB88B;
+$content-2: rgba(237, 184, 139, 1);
+$content-2_alt: rgba(237, 184, 139, .5);
 $content-3: rgba(86,171,214,1);
 $content-bg: rgba(231, 229, 228, 1);
 $content-zoomout-bg: rgba(231, 229, 228, 1);
@@ -21,7 +22,10 @@ $content-zoomout-bg: $content-bg;
 $zoomout-bg: rgba(51, 51, 51, 1);
 
 $text-white: white;
+$text-white_alt: rgba(255, 255, 255, 0.5);
 $text-title: black;
+$text: rgba(0, 0, 0, 1);
+$text_alt: rgba(0, 0, 0, 0.5);
 $text-title_cursor: black;
 
 
@@ -44,3 +48,4 @@ $text-title_cursor: black;
 @import "_normalize";
 @import "_menu";
 @import "_content";
+@import "_slidein";

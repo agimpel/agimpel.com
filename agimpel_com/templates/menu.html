@@ -1,15 +1,55 @@
 <nav class="menu menu-effect" id="menu">
-    <div id="nav-icon" data-effect="menu-effect">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    <ul>
-        <li><a class="icon icon-data" href="#">Data Management</a></li>
-        <li><a class="icon icon-location" href="#">Location</a></li>
-        <li><a class="icon icon-study" href="#">Study</a></li>
-        <li><a class="icon icon-photo" href="#">Collections</a></li>
-        <li><a class="icon icon-wallet" href="#">Credits</a></li>
-    </ul>
- </nav>
+    <table id="menu-nav">
+        <tr>
+            <td>
+                <p>Menu</p>
+            </td>
+            <td>
+                <div id="nav-icon" data-effect="menu-effect">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <ul>
+                    <li><a class="icon icon-data" href="/"><i class="fa-fw fas fa-home"></i> Home</a></li>
+                    <li><a class="icon icon-data" href="/gallery"><i class="fa-fw fas fa-camera"></i> Gallery</a></li>
+                    <li><a class="icon icon-location" href="/trips"><i class="fa-fw fas fa-route"></i> Trips</a></li>
+                    <li><a class="icon icon-study" href="/projects"><i class="fa-fw fas fa-briefcase"></i> Projects</a>
+                    </li>
+                </ul>
+            </td>
+            <td id="menu-nav-indicator">
+                <p>#{{ menu_title }}</p>
+            </td>
+        </tr>
+        <tr class="tfill">
+        </tr>
+        <tr>
+            <td id="logocell" colspan="2">
+                <table>
+                    <tr>
+                        <td>
+                            <img src="/static/img/logo.png">
+                        </td>
+                        <td>
+                            <p>
+                                <a href="/about">about</a>
+                                <br>
+                                <a href="/contact">contact</a>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+
+            </td>
+        </tr>
+    </table>
+
+</nav>

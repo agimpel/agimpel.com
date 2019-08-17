@@ -1,86 +1,106 @@
 #title {
-    width: 100%;
-    height: auto;
-    text-align: left;
-    max-width: 95%;
-    margin: auto;
-    padding-top: 10px;
-    padding-bottom: 10px;
+  width: 100%;
+  height: auto;
+  text-align: left;
+  max-width: 95%;
+  margin: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
 
-    @include s-up {max-width: 92.5%; padding-top: 20px; padding-bottom: 10px;}
-    @include m-up {max-width: 90%; padding-top: 30px; padding-bottom: 30px;}
-    @include l-up {max-width: 850px; padding-top: 50px; padding-bottom: 50px;}
-    @include xl-up {max-width: 1050px;}
+  @include s-up {
+    max-width: 92.5%;
+    padding-top: 20px;
+    padding-bottom: 10px;
+  }
+  @include m-up {
+    max-width: 90%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+  @include l-up {
+    max-width: 850px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  @include xl-up {
+    max-width: 1050px;
+  }
 }
 
 #main {
-    width: 100%;
-    text-align: justify;
-    font-family: 'Montserrat', serif;
-    max-width: 95%;
-    margin: auto;
+  width: 100%;
+  text-align: justify;
+  font-family: "Montserrat", serif;
+  max-width: 95%;
+  margin: auto;
 
-    @include s-up {max-width: 85%;}
-    @include m-up {max-width: 80%;}
-    @include l-up {max-width: 760px;}
-    @include xl-up {max-width: 960px;}
+  @include s-up {
+    max-width: 85%;
+  }
+  @include m-up {
+    max-width: 80%;
+  }
+  @include l-up {
+    max-width: 760px;
+  }
+  @include xl-up {
+    max-width: 960px;
+  }
 }
-
 
 #footer {
-    height: $footer-height;
-    width: 100%;
-    text-align: center;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 12px;
-    padding-top: 30px;
+  height: $footer-height;
+  width: 100%;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  padding-top: 30px;
 }
-
 
 // TITLE TEXT STYLING
 
 #title span {
-    font-family: 'Merriweather', serif;
-    font-size: 20px;
+  font-family: "Merriweather", serif;
+  font-size: 20px;
 
-    @include s-up {font-size: 30px;}
-    @include m-up {font-size: 40px;}
+  @include s-up {
+    font-size: 30px;
+  }
+  @include m-up {
+    font-size: 40px;
+  }
 
-    word-wrap: break-word;
-    color: $text_title;
-    text-align: center;
-    text-rendering: optimizeLegibility;
-    max-width: 100%;
+  word-wrap: break-word;
+  color: $text_title;
+  text-align: center;
+  text-rendering: optimizeLegibility;
+  max-width: 100%;
 
-
-    &.typing {
-        border-right: 0.08em solid $text-title_cursor;
-    }
-    &.typing-end { 
-        -webkit-animation: 1s blink step-end infinite;
-        animation: 1s blink step-end infinite;
-    }
+  &.typing {
+    border-right: 0.08em solid $text-title_cursor;
+  }
+  &.typing-end {
+    -webkit-animation: 1s blink step-end infinite;
+    animation: 1s blink step-end infinite;
+  }
 }
 
 @keyframes "blink" {
-    from, to {
-        border-color: transparent;
-    }
-    50% {
-        border-color: $text-title_cursor;
-    }
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: $text-title_cursor;
+  }
 }
 
 @-webkit-keyframes "blink" {
-    from, to {
-        border-color: transparent;
-    }
-    50% {
-        border-color: $text-title_cursor;
-    }
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: $text-title_cursor;
+  }
 }
-
-
-
-
-

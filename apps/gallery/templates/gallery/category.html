@@ -9,7 +9,7 @@
 {% if images %}
     <div class="image-gallery grid">
     {% for image in images %}
-        <figure style="grid-column-end: span {{ image.cols }}; grid-row-end: span {{ image.rows }}">
+        <figure class="sliding" style="grid-column-end: span {{ image.cols }}; grid-row-end: span {{ image.rows }}">
             <a href="{{ image.picture.url }}" data-size="{{ image.picture.width }}x{{ image.picture.height }}">
                 <img src="{{ image.thumbnail_1x.url }}" alt="{{ image.title }}" />
             </a>
