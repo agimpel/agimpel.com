@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.views import generic
 from django.template import loader
+from django.urls import reverse
 
 from .models import Category, Trip, Image
 
@@ -13,6 +14,8 @@ class IndexView(generic.TemplateView):
         context = super().get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
         context['trips'] = Trip.objects.all()
+        context['title'] = 'Gallery'
+        context['nav_title'] = [['gallery', None]]
         return context
 
 
@@ -28,6 +31,7 @@ class CategoryView(generic.ListView):
         context = super().get_context_data(**kwargs)
         context['category'] = self.category
         context['title'] = self.category.title
+        context['nav_title'] = [['gallery', reverse('gallery:index')], [self.category.slug, None]]
         return context
 
 
@@ -43,7 +47,8 @@ class TripView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['trip'] = self.trip
-        context['title'] = self.trip
+        context['title'] = self.trip.title
+        context['nav_title'] = [['gallery', reverse('gallery:index')], [self.trip.slug, None]]
         return context
 
 
@@ -56,5 +61,12 @@ class ImageView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = Image.objects.get(pk=self.kwargs['pk']).title
+        img = Image.objects.get(pk=self.kwargs['pk'])
+        context['title'] = img.title
+        if img.category:
+            context['nav_title'] = [['gallery', reverse('gallery:index')], [img.category.slug, reverse('gallery:category', args=(img.category.slug,))], ['image', None]]
+        elif img.trip:
+            context['nav_title'] = [['gallery', reverse('gallery:index')], [img.trip.slug, reverse('gallery:trip', args=(img.trip.slug,))], ['image', None]]
+        else:
+            context['nav_title'] = [['gallery', reverse('gallery:index')], ['image', None]]
         return context

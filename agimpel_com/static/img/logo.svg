@@ -16,7 +16,10 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.4 5da689c313, 2019-01-14"
-   sodipodi:docname="logo.svg">
+   sodipodi:docname="logo.svg"
+   inkscape:export-filename="/mnt/HDD1/Git/agimpel.com/agimpel_com/static/img/logo.png"
+   inkscape:export-xdpi="300.01181"
+   inkscape:export-ydpi="300.01181">
   <defs
      id="defs2">
     <linearGradient
@@ -36,8 +39,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.35"
-     inkscape:cx="-190.1012"
-     inkscape:cy="104.72509"
+     inkscape:cx="1840.3165"
+     inkscape:cy="-295.26906"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -75,12 +78,16 @@
        height="132.29169"
        x="0"
        y="164.70831"
-       style="stroke-width:1.984375;fill:none;fill-opacity:1;stroke:#000000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
+       style="stroke-width:1.984375;fill:none;fill-opacity:1;stroke:#000000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       inkscape:export-xdpi="300.01181"
+       inkscape:export-ydpi="300.01181" />
     <path
        style="fill:none;stroke:#000000;stroke-width:2.03337932;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 63.5,260.48748 h 55.5625"
        id="path4528"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       inkscape:export-xdpi="300.01181"
+       inkscape:export-ydpi="300.01181" />
     <flowRoot
        xml:space="preserve"
        id="flowRoot4530"
@@ -98,7 +105,9 @@
        xml:space="preserve"
        id="flowRoot4542"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:69.33333588px;line-height:1.25;font-family:'Merriweather Sans';-inkscape-font-specification:'Merriweather Sans';text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none"
-       transform="matrix(0.26458333,0,0,0.26458333,-27.776524,153.59579)"><flowRegion
+       transform="matrix(0.26458333,0,0,0.26458333,-27.776524,153.59579)"
+       inkscape:export-xdpi="300.01181"
+       inkscape:export-ydpi="300.01181"><flowRegion
          id="flowRegion4544"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:69.33333588px;font-family:'Merriweather Sans';-inkscape-font-specification:'Merriweather Sans';text-align:end;text-anchor:end"><rect
            id="rect4546"
@@ -108,9 +117,11 @@
            y="420"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:69.33333588px;font-family:'Merriweather Sans';-inkscape-font-specification:'Merriweather Sans';text-align:end;text-anchor:end" /></flowRegion><flowPara
          id="flowPara4548"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:82.66667175px;font-family:Montserrat;-inkscape-font-specification:'Montserrat Bold'">agimpel</flowPara></flowRoot>    <g
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:82.66667175px;font-family:Montserrat;-inkscape-font-specification:Montserrat">agimpel</flowPara></flowRoot>    <g
        id="g6839"
-       transform="translate(-3.1750001,1.5875)">
+       transform="translate(-3.1750001,1.5875)"
+       inkscape:export-xdpi="300.01181"
+       inkscape:export-ydpi="300.01181">
       <g
          id="g5579"
          transform="matrix(0.33291021,0,0,0.33722684,-15.368294,163.08397)">

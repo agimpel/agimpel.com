@@ -41,6 +41,12 @@ $text-title_cursor: black;
 @mixin xl-up {
     @media (min-width: 1200px) { @content; }
 }
+@mixin sh-up {
+    @media (min-height: 400px) { @content; }
+}
+@mixin mh-up {
+    @media (min-height: 550px) { @content; }
+}
 
 
 @import "_fonts";

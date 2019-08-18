@@ -103,14 +103,19 @@
 .menu ul li a {
   display: table-cell;
   vertical-align: middle;
-  height: 50px;
-  font-size: 18pt;
+  height: 40px;
+  font-size: 16pt;
   font-family: "Montserrat";
   text-decoration: none;
   outline: none;
   color: $text-white;
   -webkit-transition: color 0.3s;
   transition: color 0.3s;
+
+  @include sh-up {
+    height: 50px;
+    font-size: 18pt;
+  }
 }
 
 .menu ul li a:hover {
@@ -182,6 +187,10 @@
 
     }
 
+    &:nth-child(2) td {
+      vertical-align: top;
+    }
+
     #menu-nav-indicator {
       vertical-align: top;
       text-align: center;
@@ -192,9 +201,17 @@
         transform: rotate(180deg);
         color: $text-white;
         font-family: "Montserrat";
-        font-size: 18pt;
+        font-size: 16pt;
         padding-bottom: 15px;
+        padding-left: 4px;
         transition: color 0.5s;
+
+        a {
+          color: inherit;
+          font-family: inherit;
+          font-size: inherit;
+          text-decoration: none;
+        }
       }
     }
 

@@ -1,8 +1,9 @@
-Hi
-{% for category in categories %}
-<p>{{category.title}}, {% if category.cover %}{{category.cover.url}}{% endif %}</p>
-{% endfor %}
-<br><br><br>
-{% for trip in trips %}
-<p>{{trip.title}}, {{trip.cover.url}}</p>
-{% endfor %}
+{% extends 'gallery/main.html' %}
+
+{% block content_title %}
+    {% include 'large_heading.html' with title=title %}
+{% endblock content_title %}
+
+{% block content_body %}
+
+{% endblock content_body %}

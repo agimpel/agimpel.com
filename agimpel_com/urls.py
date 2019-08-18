@@ -19,8 +19,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', include('apps.basic.urls')),
-    path('gallery/', include('apps.gallery.urls')),
+    path('', include('apps.basic.urls', namespace='basic')),
+    path('gallery/', include('apps.gallery.urls', namespace='gallery')),
     path('admin/', admin.site.urls),
 ]
 

@@ -50,11 +50,17 @@
 
 #footer {
   height: $footer-height;
-  width: 100%;
+  width: calc(100% - 50px);
   text-align: center;
   font-family: "Montserrat", sans-serif;
   font-size: 12px;
   padding-top: 30px;
+  margin-left: 50px;
+
+  @include l-up {
+    width: 100%;
+    margin-left: 0px;
+  }
 }
 
 // TITLE TEXT STYLING

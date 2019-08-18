@@ -17,20 +17,31 @@
         <tr>
             <td>
                 <ul>
-                    <li><a class="icon icon-data" href="/"><i class="fa-fw fas fa-home"></i> Home</a></li>
-                    <li><a class="icon icon-data" href="/gallery"><i class="fa-fw fas fa-camera"></i> Gallery</a></li>
-                    <li><a class="icon icon-location" href="/trips"><i class="fa-fw fas fa-route"></i> Trips</a></li>
-                    <li><a class="icon icon-study" href="/projects"><i class="fa-fw fas fa-briefcase"></i> Projects</a>
+                    <li><a class="" href="/"><i class="fa-fw fas fa-home"></i> Home</a></li>
+                    <li><a class="" href="/gallery"><i class="fa-fw fas fa-camera"></i> Gallery</a></li>
+                    <li><a class="" href="/trips"><i class="fa-fw fas fa-route"></i> Trips</a></li>
+                    <li><a class="" href="/projects"><i class="fa-fw fas fa-briefcase"></i> Projects</a>
+                    <li><a class="show-hm" href="/about"><i class="fa-fw fas fa-user"></i> About</a>
+                    <li><a class="show-hm" href="/contact"><i class="fa-fw fas fa-envelope"></i> Contact</a>
                     </li>
                 </ul>
             </td>
-            <td id="menu-nav-indicator">
-                <p>#{{ menu_title }}</p>
+            <td class="hide-hm" id="menu-nav-indicator">
+                <p>#
+                    {% for part in nav_title %}
+                    {% if part.1 != None %}
+                    <a href="{{ part.1 }}">{{ part.0 }}</a>
+                    {% else %}
+                    {{ part.0 }}
+                    {% endif %}
+                    {% if part != nav_title|last %}&rsaquo;{% endif %}
+                    {% endfor %}
+                </p>
             </td>
         </tr>
         <tr class="tfill">
         </tr>
-        <tr>
+        <tr class="hide-hm">
             <td id="logocell" colspan="2">
                 <table>
                     <tr>
