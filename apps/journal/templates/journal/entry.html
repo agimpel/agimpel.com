@@ -1,0 +1,15 @@
+{% extends 'journal/main.html' %}
+
+{% block content_title %}
+    {% include 'large_heading.html' with title=entry.title %}
+{% endblock content_title %}
+
+{% block content_body %}
+
+{% if entry.gallery %}
+    {% for image in entry.gallery.images.all %}
+        {{ image.thumbnail_2x.url }}
+    {% endfor %}
+{% endif %}
+
+{% endblock content_body %}

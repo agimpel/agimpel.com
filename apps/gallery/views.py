@@ -3,8 +3,11 @@ from django.shortcuts import get_object_or_404
 from django.views import generic
 from django.template import loader
 from django.urls import reverse
+import logging
 
 from .models import Category, Trip, Image
+
+logger = logging.getLogger("django")
 
 
 class IndexView(generic.TemplateView):
@@ -57,8 +60,12 @@ class TripView(generic.ListView):
         context['trip'] = self.trip
         context['title'] = self.trip.title
         context['nav_title'] = [['gallery', reverse('gallery:index')], [self.trip.slug, None]]
-        if self.trip.journal:
-            context['journal_link'] = "#"
+        context['journal_available'] = False
+        logger.info(hasattr(self.trip, 'journal'))
+        if hasattr(self.trip, 'journal'):
+            logger.info("Here")
+            context['journal_available'] = True
+            context['journal_link'] = reverse('journal:entry', args=(self.trip.journal.slug,))
         return context
 
 

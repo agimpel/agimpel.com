@@ -10,11 +10,11 @@
     <p>{{ trip.description|safe }}</p>
 {% endif %}
 
-{% if trip.description and trip.journal %}
+{% if trip.description and journal_available %}
     <div class="spacer small"></div>
 {% endif %}
 
-{% if trip.journal %}
+{% if journal_available %}
     <p class="">This trip has a journal entry associated to it, read it <a href="{{ journal_link }}">here</a>.</p>
 {% endif %}
 

@@ -98,7 +98,7 @@ class Category(models.Model):
     slug = models.SlugField("Slug", max_length=40)
     description = models.CharField("Description", max_length=2000, blank=True, null=True)
     cover = models.ForeignKey(Cover, related_name='categorycover', on_delete=models.CASCADE, blank=True, null=True)
-    order = models.IntegerField("Priority", blank=True, null=True)
+    priority = models.IntegerField("Priority", blank=True, null=True)
 
     def __str__(self):
         return self.title
@@ -119,7 +119,7 @@ class Trip(models.Model):
     description = models.CharField("Description", max_length=2000, blank=True, null=True)
     cover = models.ForeignKey('Image', related_name='tripcover', on_delete=models.CASCADE, blank=True, null=True)
     show = models.BooleanField("Show", default=True)
-    order = models.IntegerField("Priority", blank=True, null=True)
+    priority = models.IntegerField("Priority", blank=True, null=True)
 
     def __str__(self):
         return self.title

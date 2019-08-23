@@ -1,0 +1,14 @@
+{% extends 'main.html' %}
+
+{% block add_head %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'journal/css/all.css' %}">
+{% endblock add_head %}
+
+{% block menu %}
+    {% include 'menu.html' with menu_active='journal' menu_title='journal' %}
+{% endblock menu %}
+
+{% block add_foot %}
+    <script src="{% static 'journal/js/journal.js' %}"></script>  
+{% endblock add_foot %}
