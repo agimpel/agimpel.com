@@ -1,0 +1,62 @@
+.category-gallery.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 100%);
+    grid-auto-rows: 100px;
+
+    @include m-up {
+        grid-auto-rows: 150px;
+    }
+
+    @include l-up {
+        grid-auto-rows: 200px;
+    }
+
+    grid-gap: 15px;
+    align-content: center;
+    justify-content: center;
+    grid-auto-flow: row dense;
+
+    a {
+        position: relative;
+    }
+
+    .cover-wrap {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        &:hover .cover {
+            transform: scale(1.1);
+        }
+    }
+
+    .cover {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 3s ease;
+        z-index: 10;
+    }
+
+    .title {
+        position: absolute;
+        background: rgba(237, 184, 139, .75);
+        padding: 10px;
+        text-align: center;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: 'Montserrat';
+        font-weight: normal;
+        font-size: 14px;
+        color: white;
+
+        @include s-up {
+          font-size: 18px;
+        }
+        @include m-up {
+          font-size: 24px;
+        }
+
+    }
+
+}

@@ -7,20 +7,7 @@
 {% block content_body %}
 
 {% if images %}
-    <div class="image-gallery grid">
-    {% for image in images %}
-        <figure class="sliding" style="grid-column-end: span {{ image.cols }}; grid-row-end: span {{ image.rows }}">
-            <a href="{{ image.picture.url }}" data-size="{{ image.picture.width }}x{{ image.picture.height }}">
-                <img src="{{ image.thumbnail_1x.url }}" alt="{{ image.title }}" />
-            </a>
-            <figcaption style="display:none">
-                <p class="image_title">{{ image.title }}</p>
-                <p class="image_exifinfo"><span>{{ image.exif_model }}</span><span>{{ image.exif_focallength }}</span><span>f/{{ image.exif_aperture }}</span><span>{{ image.exif_shutterspeed }} s</span><span>ISO {{ image.exif_iso }}</span></p>
-                <p class="image_more"><a href="/gallery/image/{{ image.pk }}/{{ image.slug }}">Details</a></p>
-            </figcaption>
-        </figure>
-    {% endfor %}
-    </div>
+    {% include 'gallery/gallery.html' with images=images %}
 {% else %}
     <p>No images are available.</p>
 {% endif %}

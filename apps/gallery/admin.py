@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Image, Category, Trip
+from .models import Image, Category, Trip, Cover
 
 
 
@@ -22,3 +22,4 @@ admin.site.register(Category, CategoryAdmin)
 admin.site.register(Trip, TripAdmin)
 
 admin.site.register(Image)
+admin.site.register(Cover)

@@ -14,6 +14,14 @@ class IndexView(generic.TemplateView):
         context = super().get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
         context['trips'] = Trip.objects.all()
+        context['trips_shown'] = []
+        context['trips_hidden'] = []
+        for trip in context['trips']:
+            if trip.show:
+                context['trips_shown'].append(trip)
+            else: 
+                context['trips_hidden'].append(trip)
+        context['trips_shown'] 
         context['title'] = 'Gallery'
         context['nav_title'] = [['gallery', None]]
         return context
@@ -49,6 +57,8 @@ class TripView(generic.ListView):
         context['trip'] = self.trip
         context['title'] = self.trip.title
         context['nav_title'] = [['gallery', reverse('gallery:index')], [self.trip.slug, None]]
+        if self.trip.journal:
+            context['journal_link'] = "#"
         return context
 
 

@@ -181,6 +181,7 @@
       &:nth-child(1) p {
         color: $text_white_alt;
         font-family: "Montserrat";
+        font-weight: 300;
         font-size: 24pt;
       }
 
@@ -201,6 +202,7 @@
         transform: rotate(180deg);
         color: $text-white;
         font-family: "Montserrat";
+        font-weight: 300;
         font-size: 16pt;
         padding-bottom: 15px;
         padding-left: 4px;

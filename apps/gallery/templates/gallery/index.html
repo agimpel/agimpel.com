@@ -6,4 +6,63 @@
 
 {% block content_body %}
 
+{% if not categories and not trips %}
+    <span>No galleries set up.</span>
+{% endif %}
+
+{% if categories %}
+    {% include 'medium_heading.html' with title='Portfolios' %}
+    <div class="category-gallery grid">
+    {% for category in categories %}
+        <a class="sliding" href="{% url 'gallery:category' slug=category.slug %}" {% if category.order %}style="order:{{ category.order }}"{% endif %}>
+            <div class="cover-wrap">
+                {% if category.cover %}
+                    <img class="cover" src="{{ category.cover.thumbnail_1x.url }}" srcset="{{ category.cover.thumbnail_1x.url }}, {{ category.cover.thumbnail_2x.url }} 2x" style="object-position:{{ category.cover.position }}">
+                {% endif %}
+                <span class="title">{{ category.title }}</span>
+            </div>
+        </a>
+    {% endfor %}
+    </div>
+{% endif %}
+
+{% if categories and trips %}
+    <div class="spacer"></div>
+{% endif %}
+
+{% if trips %}
+    {% include 'medium_heading.html' with title='Trips and Destinations' %}
+    <div class="trip-gallery grid">
+    {% for trip in trips_shown %}
+        <a class="sliding" href="{% url 'gallery:trip' slug=trip.slug %}" {% if trip.order %}style="order:-{{ trip.order }}"{% endif %}>
+            <div class="cover-wrap">
+                {% if trip.cover %}
+                    <img class="cover" src="{{ trip.cover.thumbnail_1x.url }}" srcset="{{ trip.cover.thumbnail_1x.url }}, {{ trip.cover.thumbnail_2x.url }} 2x">
+                {% endif %}
+                <span class="title">{{ trip.title }}</span>
+            </div>
+        </a>
+    {% endfor %}
+    {% if trips_hidden %}
+        <a class="sliding gallery-more">
+            <div class="cover-wrap more" onclick="showhiddengalleryitems()">
+                <span class="title">show all</span>
+            </div>
+        </a>
+    {% for trip in trips_hidden %}
+    <a class="sliding gallery-hidden" href="{% url 'gallery:trip' slug=trip.slug %}">
+            <div class="cover-wrap">
+                {% if trip.cover %}
+                    <img class="cover" src="{{ trip.cover.thumbnail_1x.url }}" srcset="{{ trip.cover.thumbnail_1x.url }}, {{ trip.cover.thumbnail_2x.url }} 2x">
+                {% endif %}
+                <span class="title">{{ trip.title }}</span>
+            </div>
+        </a>
+    {% endfor %}
+    {% endif %}
+    </div>
+{% endif %}
+
+
+
 {% endblock content_body %}

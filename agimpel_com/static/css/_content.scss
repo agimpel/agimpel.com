@@ -2,18 +2,18 @@
   width: 100%;
   height: auto;
   text-align: left;
-  max-width: 95%;
+  max-width: 92.5%;
   margin: auto;
   padding-top: 10px;
   padding-bottom: 10px;
 
   @include s-up {
-    max-width: 92.5%;
+    max-width: 90%;
     padding-top: 20px;
     padding-bottom: 10px;
   }
   @include m-up {
-    max-width: 90%;
+    max-width: 85%;
     padding-top: 30px;
     padding-bottom: 30px;
   }
@@ -31,7 +31,7 @@
   width: 100%;
   text-align: justify;
   font-family: "Montserrat", serif;
-  max-width: 95%;
+  max-width: 90%;
   margin: auto;
 
   @include s-up {
@@ -108,5 +108,38 @@
   }
   50% {
     border-color: $text-title_cursor;
+  }
+}
+
+.medium_heading {
+  padding-bottom: 10px;
+
+  span {
+    font-family: 'Montserrat', sans-serif;  
+    font-size: 16px;
+
+    @include s-up {
+      font-size: 20px;
+    }
+    @include m-up {
+      font-size: 25px;
+    }
+  }
+}
+
+
+div.spacer {
+  height: 50px;
+
+  @include m-up {
+    height: 100px;
+  }
+
+  &.small {
+    height: 15px;
+
+    @include m-up {
+      height: 25px;
+    }
   }
 }
