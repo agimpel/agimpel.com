@@ -1,0 +1,39 @@
+<table class="entry_table">
+    <tr class="header">
+            <td class="td-title">Title</td>
+        {% for column in columns %}
+            <td class="td-{{ column.slug }}">{{ column.name }}</td>
+        {% endfor %}
+    </tr>
+    {% for entry in entries_datamatrix %}
+    <tr class="row">
+            <td class="td-title">{{ entry.0 }}</td>
+        {% for category in entry.1 %}
+            <td class="td-{{ element.slug }}">
+                {% for tag in category %}
+                {{ tag.short_name }}
+                {% endfor %}
+            </td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+
+
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% for entry in entries %}
+hs: {{ entry }}
+<br>
+{% endfor %}

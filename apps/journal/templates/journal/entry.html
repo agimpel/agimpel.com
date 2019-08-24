@@ -6,6 +6,12 @@
 
 {% block content_body %}
 
+<p class="entry-summary">{{ entry.summary }}</p>
+
+<div class="spacer small"></div>
+
+
+
 {% if entry.gallery %}
     {% for image in entry.gallery.images.all %}
         {{ image.thumbnail_2x.url }}

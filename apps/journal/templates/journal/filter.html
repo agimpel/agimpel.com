@@ -1,0 +1,19 @@
+{% extends 'journal/main.html' %}
+
+{% block content_body %}
+
+<div class="spacer small"></div>
+
+
+<p>The filter for entries including 
+{% for query in queries %}{% if query is queries|first %}{% elif query is queries|last %} and {% else %}, {% endif %}<i>{{ query.name }}</i>{% endfor %}
+yielded {{ queries_n }} result{{ queries_n|pluralize:",s" }}.
+</p>
+
+
+<div class="spacer small"></div>
+
+{% include 'journal/entry_table.html' with entries=entries columns=columns %}
+
+
+{% endblock content_body %}
