@@ -1,0 +1,9 @@
+{% spaceless %}
+{% if tag.icon and tag.category.verbose == 'I' %}
+<img src="{{ tag.icon.url }}" class="tag-icon category-{{ tag.shown_category }}">
+{% elif tag.icon and tag.category.verbose == 'B' %}
+<img src="{{ tag.icon.url }}" class="tag-icon category-{{ tag.shown_category }}"><span class="tag-text both category-{{ tag.shown_category }}">{{ tag.short_name }}</span>
+{% else %}
+<span class="tag-text category-{{ tag.shown_category }}">{{ tag.short_name }}</span>
+{% endif %}
+{% endspaceless %}

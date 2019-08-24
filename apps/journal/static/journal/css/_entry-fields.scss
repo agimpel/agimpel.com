@@ -1,0 +1,156 @@
+#entry-table {
+    margin: auto;
+    max-width: 100%;
+    border-collapse: collapse;
+
+    td, th {
+        height: 50px;
+        vertical-align: middle;
+        padding-left: 20px;
+        padding-right: 20px;
+
+        * {
+            vertical-align: middle;
+            display: inline-block;
+        }
+    }
+
+    thead {
+        border-bottom: 1px solid black;
+    }
+
+    .row {
+        cursor: pointer;
+        transition: background-color .3s ease-in;
+
+        &:hover {
+            background: rgba(237, 184, 139, .5);;
+        }
+    }
+
+    .td-title {
+        max-width: 300px;
+        word-wrap: break-word;
+    }
+
+    .td-empty {
+        text-align: center;
+    }
+
+    .td-activity {
+        text-align: center;
+    }
+
+    .td-gallery {
+        text-align: center;
+    }
+
+    .tag-text {
+        &.both {
+            padding-left: .3em;
+        }
+    }
+
+    .tag-icon {
+        width: 20px;
+        display: inline-block;
+
+        &.category-activity {
+            width: 30px;
+        }
+    }
+
+    .td-title {
+        max-width: 300px;
+        word-wrap: break-word;
+        align-self: center;
+    }
+
+    td::before {
+      display: none;
+    }
+    
+    @media screen and (max-width: 992px) {
+
+    td, th {
+        height: 50px;
+        vertical-align: middle;
+        padding-left: 0px;
+        padding-right: 0px;
+
+    }
+
+    .row {
+        padding-bottom: 20px;
+        padding-top: 20px;
+        border-bottom: 2px solid black;
+
+        &:last-child {
+            border-bottom: 0px solid black;
+        }
+    }
+        
+    
+     thead {
+       position: absolute;
+       opacity: 0;
+     }
+      
+     tbody {
+       display: block;
+       width: 300px;
+     }
+    
+     tr {
+       display: block;
+     }
+    
+     td {
+       display: flex;
+       * {
+        align-self: center;
+       }
+     }
+    
+     td::before {
+       display: inline-block;
+       align-self: center;
+       margin-right: auto;
+       padding-right: .2em;
+     }
+
+     .td-title::before {
+        display: none;
+    }
+
+    .td-title {
+        font-weight: bold;
+    }
+    
+     td:last-child {
+       border-bottom: 0;
+     }
+    }
+
+    @media screen and (max-width: 480px) {
+        tbody {
+            font-size: 10pt;
+            display: block;
+            width: 235px;
+          }
+
+          td, th {
+            height: 40px;
+          }
+    }
+  
+  }
+  
+  
+  
+  
+
+
+
+
+

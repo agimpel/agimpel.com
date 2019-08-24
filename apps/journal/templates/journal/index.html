@@ -6,4 +6,13 @@
 
 {% block content_body %}
 
+<form action="{% url 'journal:filter_redirect' %}" method="post">
+    {% csrf_token %}
+    {{ filter_form }}
+    <input type="submit" value="Submit">
+</form>
+      
+
+{% include 'journal/entry_table.html' with entries=entries columns=columns %}
+
 {% endblock content_body %}

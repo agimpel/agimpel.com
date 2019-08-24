@@ -1,39 +1,40 @@
-<table class="entry_table">
-    <tr class="header">
-            <td class="td-title">Title</td>
-        {% for column in columns %}
-            <td class="td-{{ column.slug }}">{{ column.name }}</td>
-        {% endfor %}
-    </tr>
-    {% for entry in entries_datamatrix %}
-    <tr class="row">
-            <td class="td-title">{{ entry.0 }}</td>
-        {% for category in entry.1 %}
-            <td class="td-{{ element.slug }}">
-                {% for tag in category %}
-                {{ tag.short_name }}
-                {% endfor %}
+{% if entries %}
+<table id="entry-table">
+    <thead>
+        <tr class="header">
+            <th class="td-title">Title</th>
+            {% for column in columns %}
+                <th class="td-category td-{{ column.slug }}">{{ column.name }}</th>
+            {% endfor %}
+            <th class="td-gallery">Gallery</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for entry in entries_datamatrix %}
+        <tr class="row" onclick="window.location='{% url 'journal:entry' slug=entry.0.slug %}';">
+            <td class="td-title"><a href="{% url 'journal:entry' slug=entry.0.slug %}">{{ entry.0 }}</a></td>
+            {% for tag_group in entry.1 %}
+                {% if tag_group %}
+                <td class="td-category td-{{ tag_group.0.shown_category }}">
+                    {% spaceless %}
+                    {% for tag in tag_group %}{% include "journal/tag_styling.html" with tag=tag %}{% if tag is not tag_group|last and tag.category.verbose != "I" %}<span>,&nbsp;&nbsp;</span>{% endif %}{% endfor %}
+                    {% endspaceless %}
+                </td>
+                {% else %}
+                <td class="td-category td-empty"><span>-</span></td>
+                {% endif %}
+            {% endfor %}
+            <td class="td-gallery">
+                {% if entry.0.gallery %}
+                <i class="fas fa-fw fa-check"></i>
+                {% else %}
+                <i class="fas fa-fw fa-times"></i>
+                {% endif %}
             </td>
+        </tr>
         {% endfor %}
-    </tr>
-    {% endfor %}
-
-
+    </tbody>
 </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-{% for entry in entries %}
-hs: {{ entry }}
-<br>
-{% endfor %}
+{% else %}
+<p>No journal entries found.</p>
+{% endif %}

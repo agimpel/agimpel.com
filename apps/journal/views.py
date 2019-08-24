@@ -1,9 +1,12 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.views import generic
 from django.template import loader
 from django.urls import reverse
+from django.shortcuts import redirect
+from django.http import Http404
 
+from .forms import FilterForm
 from .models import Entry, Category, Tag
 
 import logging
@@ -11,13 +14,36 @@ logger = logging.getLogger("django")
 
 
 def prepare_entries_datamatrix(entries, columns): 
-    matrix = [[entry,] for entry in entries]
-    for element in matrix:
-        element.append([element[0].categories.filter(category=column) for column in columns])
-
-    logger.info(matrix[0][1][0][0])
+    matrix = []
+    for entry in entries:
+        added_columns = []
+        for column in columns:
+            added_column = []
+            if entry.categories.filter(category=column): added_column.extend(entry.categories.filter(category=column))
+            for child in column.children.filter(show=False):
+                if entry.categories.filter(category=child): added_column.extend(entry.categories.filter(category=child))
+            added_columns.append(added_column)
+        matrix.append([entry, added_columns])
     return matrix
 
+
+def FilterRedirect(request):
+    if request.method == 'POST':
+        form = FilterForm(request.POST)
+        if form.is_valid():
+            if form.cleaned_data['activity'] != "all" or form.cleaned_data['region'] != "all":
+                query_activity = form.cleaned_data['activity']+"/" if form.cleaned_data['activity'] != "all" else ""
+                query_region = form.cleaned_data['region']+"/" if form.cleaned_data['region'] != "all" else ""
+                query = query_activity+query_region
+                logger.info(query)
+                url = reverse('journal:filter', args=[query])
+            else:
+                url = reverse('journal:index')
+            return HttpResponseRedirect(url)
+        else:
+            raise Http404('Form is invalid.')
+    else:
+        raise Http404()
 
 
 class IndexView(generic.TemplateView):
@@ -25,7 +51,11 @@ class IndexView(generic.TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['entries'] = Entry.objects.all().order_by('-order', 'title')
+        context['columns'] = Category.objects.filter(show=True).order_by('order', 'title')
+        context['entries_datamatrix'] = prepare_entries_datamatrix(Entry.objects.all().order_by('-order', 'title'), Category.objects.filter(show=True).order_by('order', 'title'))
         context['title'] = 'Journal'
+        context['filter_form'] = FilterForm()
         context['nav_title'] = [['journal', None]]
         return context
 
@@ -66,9 +96,9 @@ class FilterView(generic.ListView):
         for tag in required_tags:
             entries = entries.filter(categories=tag)
 
-        context['entries'] = entries
-        context['columns'] = Category.objects.filter(show=True)
-        context['entries_datamatrix'] = prepare_entries_datamatrix(entries, Category.objects.filter(show=True))
+        context['entries'] = entries.order_by('-order', 'title')
+        context['columns'] = Category.objects.filter(show=True).order_by('order', 'title')
+        context['entries_datamatrix'] = prepare_entries_datamatrix(entries.order_by('-order', 'title'), Category.objects.filter(show=True).order_by('order', 'title'))
         context['queries'] = required_tags
         context['queries_n'] = len(entries)
         context['title'] = 'Filter Results'
