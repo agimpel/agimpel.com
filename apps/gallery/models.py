@@ -9,7 +9,7 @@ from PIL import Image as pil_image
 from exiffield.fields import ExifField
 from slugify import slugify
 
-logger = logging.getLogger("django")
+logger = logging.getLogger("agimpel.gallery.models")
 
 THUMBNAIL_WIDTH = 300
 COVER_WIDTH = 960

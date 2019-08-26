@@ -2,7 +2,7 @@ from django import forms
 from .models import Category, Tag
 
 import logging
-logger = logging.getLogger("django")
+logger = logging.getLogger("agimpel.journal.forms")
 
 class FilterForm(forms.Form):
 
@@ -15,7 +15,7 @@ class FilterForm(forms.Form):
             choices_activities.append([category_activity.slug + '.' + activity.slug, activity.title])
 
     except:
-        logger.info("FilterForm: No activities set up")
+        logger.debug("FilterForm: No activities set up")
         choices_activities = [["all", "all"]]
 
 
@@ -42,7 +42,7 @@ class FilterForm(forms.Form):
         choices_regions.insert(0, ["all", "all"])
     
     except:
-        logger.info("FilterForm: No regions set up")
+        logger.debug("FilterForm: No regions set up")
         choices_regions = [["all", "all"]]
 
     activity = forms.ChoiceField(choices=tuple(choices_activities))

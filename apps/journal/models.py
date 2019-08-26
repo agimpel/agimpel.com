@@ -7,7 +7,7 @@ from slugify import slugify
 import uuid
 
 import logging
-logger = logging.getLogger("django")
+logger = logging.getLogger("agimpel.journal.models")
 
 def upload_icon(instance, filename):
     extension = filename.split(".")[-1]

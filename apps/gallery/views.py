@@ -7,7 +7,7 @@ import logging
 
 from .models import Category, Trip, Image
 
-logger = logging.getLogger("django")
+logger = logging.getLogger("agimpel.gallery.views")
 
 
 class IndexView(generic.TemplateView):

@@ -10,7 +10,7 @@ from .forms import FilterForm
 from .models import Entry, Category, Tag
 
 import logging
-logger = logging.getLogger("django")
+logger = logging.getLogger("agimpel.journal.views")
 
 
 def prepare_entries_datamatrix(entries, columns): 
