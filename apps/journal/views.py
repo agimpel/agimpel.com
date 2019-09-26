@@ -68,6 +68,14 @@ class EntryView(generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         entry = Entry.objects.get(slug=self.kwargs['slug'])
+        context['items'] = entry.descriptions.all()
+        context['links'] = entry.links.all()
+        columns = Category.objects.filter(show=True).order_by('order', 'title')
+        data = prepare_entries_datamatrix([entry], columns)[0][1]
+        data_new = []
+        for i in range(len(columns)):
+            data_new.append([columns[i], data[i]])
+        context['tags'] = data_new
         context['title'] = entry.title
         context['nav_title'] = [['journal', reverse('journal:index')], [entry.slug, None]]
         return context

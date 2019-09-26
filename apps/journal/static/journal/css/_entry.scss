@@ -1,0 +1,68 @@
+.item-table {
+    border-collapse: collapse;
+    width: 100%;
+
+    @include s-up {
+        
+    }
+
+    tr {
+        @include m-up {
+
+        }
+    }
+
+
+
+    td {
+        width: 100%;
+        display: block;
+        padding-bottom: 5px;
+        vertical-align: top;
+
+        @include m-up {
+            width: auto;
+            display: table-cell;
+        }
+
+        &:nth-child(1) {
+            font-weight: bold;
+            padding-right: 15px;
+
+            @include m-up {
+                padding-bottom: 25px;
+            }
+        }
+
+        &:nth-child(2) {
+            padding-bottom: 20px;
+            vertical-align: middle;
+            width: 100%;
+
+            * {
+                vertical-align: middle;
+                display: inline-block;
+            }
+
+            @include m-up {
+                padding-bottom: 25px;
+            }
+        }
+    }
+
+    .tag-text {
+        &.both {
+            padding-left: .3em;
+        }
+    }
+
+    .tag-icon {
+        width: 20px;
+        display: inline-block;
+
+        &.category-activity {
+            width: 30px;
+        }
+    }
+    
+}

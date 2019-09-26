@@ -8,10 +8,31 @@
 
 <form action="{% url 'journal:filter_redirect' %}" method="post">
     {% csrf_token %}
-    {{ filter_form }}
-    <input type="submit" value="Submit">
+    <table id="filter">
+        <tr>
+            <td>
+                {{ filter_form.activity.label_tag }}
+            </td>
+            <td>
+                {{ filter_form.activity }}
+            </td>
+            <td rowspan="2">
+                <input class="submit" type="submit" value="Filter">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ filter_form.region.label_tag }}
+            </td>
+            <td>
+                {{ filter_form.region }}
+            </td>
+        </tr>
+    </table>
 </form>
       
+<div class="spacer small"></div>
+<div class="spacer small"></div>
 
 {% include 'journal/entry_table.html' with entries=entries columns=columns %}
 

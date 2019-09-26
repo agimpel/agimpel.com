@@ -10,6 +10,47 @@
 
 <div class="spacer small"></div>
 
+<table class="item-table">
+    {% for tag_group in tags %}
+    <tr>
+        <td>
+            {{ tag_group.0.title }}
+        </td>
+        <td>
+            {% spaceless %}
+            {% for tag in tag_group.1 %}{% include "journal/tag_styling.html" with tag=tag %}{% if tag is not tag_group.1|last and tag.category.verbose != "I" %}<span>,&nbsp;&nbsp;</span>{% endif %}{% endfor %}
+            {% endspaceless %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<div class="spacer small"></div>
+
+<table class="item-table">
+    {% for item in items %}
+    <tr>
+        <td>
+            {{ item.title }}
+        </td>
+        <td>
+            {{ item.text }}
+        </td>
+    </tr>
+    {% endfor %}
+    {% if links %}
+    <tr>
+        <td>
+            Links
+        </td>
+        <td>
+            {% for link in links %}
+            <a href="{{ link.url }}" target="_blank">{{ link.title }}</a>&nbsp;
+            {% endfor %}
+        </td>
+    </tr>    
+    {% endif %}
+</table>
 
 
 {% if entry.gallery %}
