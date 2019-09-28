@@ -3,8 +3,15 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
     // parse slide data (url, title, size ...) from DOM elements 
     // (children of gallerySelector)
     var parseThumbnailElements = function(el) {
-        var thumbElements = el.childNodes,
-            numNodes = thumbElements.length,
+        var thumbElements = [];
+        
+        for(var i = 0; i < el.childNodes.length; i++) {
+            if(el.childNodes[i].nodeType == 1 && el.childNodes[i].nodeName == "FIGURE") {
+                thumbElements.push(el.childNodes[i])
+            }
+        }
+
+        var numNodes = thumbElements.length,
             items = [],
             figureEl,
             linkEl,

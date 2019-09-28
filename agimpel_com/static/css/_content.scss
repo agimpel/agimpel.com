@@ -4,13 +4,13 @@
   text-align: left;
   max-width: 92.5%;
   margin: auto;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 15px;
+  padding-bottom: 20px;
 
   @include s-up {
     max-width: 90%;
     padding-top: 20px;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
   }
   @include m-up {
     max-width: 85%;
@@ -135,11 +135,27 @@ div.spacer {
     height: 100px;
   }
 
+  &.xsmall {
+    height: 10px;
+
+    @include m-up {
+      height: 15px;
+    }
+  }
+
   &.small {
     height: 15px;
 
     @include m-up {
       height: 25px;
+    }
+  }
+
+  &.medium {
+    height: 25px;
+
+    @include m-up {
+      height: 40px;
     }
   }
 }

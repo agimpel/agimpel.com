@@ -8,9 +8,13 @@
 
 <p class="entry-summary">{{ entry.summary }}</p>
 
-<div class="spacer small"></div>
+<div class="spacer medium"></div>
 
-<table class="item-table">
+{% include "medium_heading.html" with title="Tags" %}
+
+<div class="spacer xsmall"></div>
+
+<table class="desc-table">
     {% for tag_group in tags %}
     <tr>
         <td>
@@ -25,7 +29,13 @@
     {% endfor %}
 </table>
 
-<div class="spacer small"></div>
+{% if items %}
+
+<div class="spacer medium"></div>
+
+{% include "medium_heading.html" with title="Details" %}
+
+<div class="spacer xsmall"></div>
 
 <table class="item-table">
     {% for item in items %}
@@ -51,12 +61,32 @@
     </tr>    
     {% endif %}
 </table>
-
+{% endif %}
 
 {% if entry.gallery %}
-    {% for image in entry.gallery.images.all %}
-        {{ image.thumbnail_2x.url }}
+
+<div class="spacer medium"></div>
+
+<div class="image-gallery grid">
+    {% for image in gallery_images %}
+        <figure class="sliding">
+            <a href="{{ image.picture.url }}" data-size="{{ image.picture.width }}x{{ image.picture.height }}">
+                <img src="{{ image.thumbnail_1x.url }}" srcset="{{ image.thumbnail_1x.url }}, {{ image.thumbnail_2x.url }} 2x" title="{{ image.title }}" />
+            </a>
+            <figcaption style="display:none">
+                <p class="image_title">{{ image.title }}</p>
+                <p class="image_exifinfo"><span>{{ image.exif_model }}</span><span>{{ image.exif_focallength }}</span><span>f/{{ image.exif_aperture }}</span><span>{{ image.exif_shutterspeed }} s</span><span>ISO {{ image.exif_iso }}</span></p>
+                <p class="image_more"><a href="{{ gallery_link }}">see full gallery</a></p>
+            </figcaption>
+        </figure>
     {% endfor %}
+    <a class="sliding gallery-more" href="{{ gallery_link }}" onclick="window.location = '{{ gallery_link }}'">
+        <div class="cover-wrap more">
+            <span class="title">see full gallery</span>
+        </div>
+    </a>
+</div>
+    
 {% endif %}
 
 {% endblock content_body %}

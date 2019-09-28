@@ -20,7 +20,7 @@
   @include l-up {
     margin-left: 0px;
   }
-  overflow-x: hidden;
+  // overflow-x: hidden;
 }
 
 .menu-container {
@@ -198,6 +198,8 @@
       text-align: center;
       p {
         margin: auto;
+        line-height: 50px;
+        text-align: center;
         writing-mode: vertical-lr;
         text-orientation: sideways;
         transform: rotate(180deg);
@@ -206,7 +208,7 @@
         font-weight: 300;
         font-size: 16pt;
         padding-bottom: 15px;
-        padding-left: 4px;
+        padding-left: 2px;
         transition: color 0.5s;
 
         a {

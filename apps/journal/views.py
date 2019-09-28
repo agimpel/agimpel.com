@@ -76,6 +76,10 @@ class EntryView(generic.DetailView):
         for i in range(len(columns)):
             data_new.append([columns[i], data[i]])
         context['tags'] = data_new
+        if entry.gallery:
+            max_images = 3
+            context['gallery_images'] = entry.gallery.images.all().order_by('?')[0:max_images]
+            context['gallery_link'] = reverse('gallery:trip', args=(entry.gallery.slug,))
         context['title'] = entry.title
         context['nav_title'] = [['journal', reverse('journal:index')], [entry.slug, None]]
         return context
@@ -109,6 +113,6 @@ class FilterView(generic.ListView):
         context['entries_datamatrix'] = prepare_entries_datamatrix(entries.order_by('-order', 'title'), Category.objects.filter(show=True).order_by('order', 'title'))
         context['queries'] = required_tags
         context['queries_n'] = len(entries)
-        context['title'] = 'Filter Results'
-        context['nav_title'] = [['journal', reverse('journal:index')], ['filter results', None]]
+        context['title'] = 'Search Results'
+        context['nav_title'] = [['journal', reverse('journal:index')], ['search results', None]]
         return context

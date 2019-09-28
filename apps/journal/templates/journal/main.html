@@ -3,6 +3,9 @@
 {% block add_head %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'journal/css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'gallery/css/all.css' %}"> 
+    <link rel="stylesheet" href="{% static 'gallery/css/photoswipe.css' %}"> 
+    <link rel="stylesheet" href="{% static 'gallery/css/default-skin/default-skin.css' %}">
 {% endblock add_head %}
 
 {% block menu %}
@@ -10,5 +13,11 @@
 {% endblock menu %}
 
 {% block add_foot %}
+    {% include 'gallery/photoswipe.html' %}
+    {% load static %}
+    <script src="{% static 'gallery/js/photoswipe.min.js' %}"></script> 
+    <script src="{% static 'gallery/js/photoswipe-ui-default.min.js' %}"></script>
+    <script src="{% static 'gallery/js/photoswipe_gallery.js' %}"></script>  
+    <script src="{% static 'gallery/js/gallery.js' %}"></script>  
     <script src="{% static 'journal/js/journal.js' %}"></script>  
 {% endblock add_foot %}

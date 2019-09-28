@@ -61,9 +61,7 @@ class TripView(generic.ListView):
         context['title'] = self.trip.title
         context['nav_title'] = [['gallery', reverse('gallery:index')], [self.trip.slug, None]]
         context['journal_available'] = False
-        logger.info(hasattr(self.trip, 'journal'))
         if hasattr(self.trip, 'journal'):
-            logger.info("Here")
             context['journal_available'] = True
             context['journal_link'] = reverse('journal:entry', args=(self.trip.journal.slug,))
         return context

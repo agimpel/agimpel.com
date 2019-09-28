@@ -29,5 +29,5 @@ function cellHeaders(tableId) {
       console.log('cellHeaders(): ' + err);
     }
   }
-  cellHeaders('entry-table');
+  if ($('#entry-table').length > 0) {cellHeaders('entry-table');}
   

@@ -2,7 +2,7 @@
     {% for image in images %}
         <figure class="sliding" style="grid-column-end: span {{ image.cols }}; grid-row-end: span {{ image.rows }}">
             <a href="{{ image.picture.url }}" data-size="{{ image.picture.width }}x{{ image.picture.height }}">
-                <img src="{{ image.thumbnail_1x.url }}" srcset="{{ image.thumbnail_1x.url }}, {{ image.thumbnail_2x.url }} 2x" alt="{{ image.title }}" />
+                <img src="{{ image.thumbnail_1x.url }}" srcset="{{ image.thumbnail_1x.url }}, {{ image.thumbnail_2x.url }} 2x" title="{{ image.title }}" />
             </a>
             <figcaption style="display:none">
                 <p class="image_title">{{ image.title }}</p>
