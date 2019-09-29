@@ -1,18 +1,54 @@
-{% extends 'main.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>{{ title }} | agimpel.com</title>
+		<meta name="description" content="Homepage of Andreas Gimpel" />
+		<meta name="keywords" content="photography,travel,coding,blog,university" />
+		<meta name="author" content="Andreas Gimpel" />
+		<link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/favicon/apple-touch-icon.png'%}">
+		<link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon/favicon-32x32.png'%}">
+		<link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon/favicon-16x16.png'%}">
+		<link rel="manifest" href="{% static 'img/favicon/site.webmanifest'%}">
+		<link rel="mask-icon" href="{% static 'img/favicon/safari-pinned-tab.svg'%}" color="#edb88b">
+		<link rel="shortcut icon" href="{% static 'img/favicon/favicon.ico'%}">
+		<meta name="msapplication-TileColor" content="#edb88b">
+		<meta name="msapplication-config" content="{% static 'img/favicon/browserconfig.xml'%}">
+		<meta name="theme-color" content="#edb88b">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/all.css'%}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'css/fontawesome.css'%}" />
+        <script src="{% static 'js/modernizr.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'basic/css/all.css' %}">
+	</head>
+	<body>
+		<div id="menu-container" class="menu-container">
+			{% block menu %}
+				{% include 'menu.html' with menu_active='home' %}
+			{% endblock menu %}
+			<div class="content-pusher">
+				<div class="content">
+                    <div id="home-wrapper">
+                        <div id="home-bg">
+                            <div id="box-wrapper">
+                                <div id="title-box"><p>Andreas Gimpel</p></div>
+                                <a href="/gallery" class="home-box"><div><p>Gallery</p></div></a>
+                                <a href="/journal" class="home-box"><div><p>Journal</p></div></a>
+                                <a href="/projects" class="home-box"><div><p>Projects</p></div></a>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+			</div>
+		</div>
+		<script src="{% static 'js/jquery.js' %}"></script>
+		<script src="{% static 'js/classie.js' %}"></script>
+        <script src="{% static 'js/sidebar_effects.js' %}"></script>
+		<script src="{% static 'js/title.js' %}"></script>
+		<script src="{% static 'js/slidein_effects.js' %}"></script>
+	</body>
+</html>
 
-{% block add_head %}
-{% endblock add_head %}
 
-{% block menu %}
-    {% include 'menu.html' with menu_active='' %}
-{% endblock menu %}
-
-{% block add_foot %}
-{% endblock add_foot %}
-
-{% block content_title %}
-    {% include 'large_heading.html' with title="Main" %}
-{% endblock content_title %}
-
-{% block content_body %}
-{% endblock content_body %}
