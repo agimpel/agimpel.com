@@ -1,0 +1,13 @@
+{% extends 'main.html' %}
+
+{% block add_head %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'projects/css/all.css' %}">
+{% endblock add_head %}
+
+{% block menu %}
+    {% include 'menu.html' with menu_active='projects' menu_title='projects' %}
+{% endblock menu %}
+
+{% block add_foot %}
+{% endblock add_foot %}

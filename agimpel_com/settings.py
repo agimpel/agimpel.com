@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'apps.basic',
     'apps.gallery',
     'apps.journal',
+    'apps.projects',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

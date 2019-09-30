@@ -22,6 +22,7 @@ urlpatterns = [
     path('', include('apps.basic.urls', namespace='basic')),
     path('gallery/', include('apps.gallery.urls', namespace='gallery')),
     path('journal/', include('apps.journal.urls', namespace='journal')),
+    path('projects/', include('apps.projects.urls', namespace='projects')),
     path('admin/', admin.site.urls),
 ]
 

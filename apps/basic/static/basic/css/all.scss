@@ -23,8 +23,13 @@
     min-height: 500px;
     height: 100vh;
     background-image: url("home.jpg");
+    background-size: cover;
     animation: animatedBackground 30s ease-in-out alternate infinite;
     animation-delay: -15s;
+
+    @include m-up {
+        background-size: 135%;
+    }
 }
 
 #home-bg {
