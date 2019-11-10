@@ -1,7 +1,7 @@
 .trip-gallery.grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 100px);
-    grid-auto-rows: 100px;
+    grid-template-columns: repeat(auto-fill, 150px);
+    grid-auto-rows: 150px;
 
     @include l-up {
         grid-template-columns: repeat(auto-fill, 200px);
