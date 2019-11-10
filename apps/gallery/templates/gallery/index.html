@@ -34,7 +34,7 @@
     {% include 'medium_heading.html' with title='Trips and Destinations' %}
     <div class="trip-gallery grid">
     {% for trip in trips_shown %}
-        <a class="sliding" href="{% url 'gallery:trip' slug=trip.slug %}" {% if trip.priority %}style="order:-{{ trip.priority }}"{% endif %}>
+        <a class="sliding" href="{% url 'gallery:trip' slug=trip.slug %}" {% if trip.priority %}style="order:{{ trip.priority }}"{% endif %}>
             <div class="cover-wrap">
                 {% if trip.cover %}
                     <img class="cover" src="{{ trip.cover.thumbnail_1x.url }}" srcset="{{ trip.cover.thumbnail_1x.url }}, {{ trip.cover.thumbnail_2x.url }} 2x">
