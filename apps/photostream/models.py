@@ -11,7 +11,7 @@ from slugify import slugify
 
 logger = logging.getLogger("agimpel.photostream.models")
 
-THUMBNAIL_WIDTH = 300
+THUMBNAIL_SIZE = 300
 PICTURE_WIDTH = 1920
 
 
@@ -86,8 +86,13 @@ class Photo(models.Model):
         height = self.src.height
         htw_ratio = height/width
 
-        self.thumbnail_1x = resize_image(self, self.src, size=(THUMBNAIL_WIDTH, htw_ratio*THUMBNAIL_WIDTH), name_suffix='1x')
-        self.thumbnail_2x = resize_image(self, self.src, size=(2*THUMBNAIL_WIDTH, 2*htw_ratio*THUMBNAIL_WIDTH), name_suffix='2x')
+        if htw_ratio < 0.5:
+            factor = 1/htw_ratio
+        else:
+            factor = 1
+
+        self.thumbnail_1x = resize_image(self, self.src, size=(factor*THUMBNAIL_SIZE, factor*htw_ratio*THUMBNAIL_SIZE), name_suffix='1x')
+        self.thumbnail_2x = resize_image(self, self.src, size=(2*factor*THUMBNAIL_SIZE, 2*factor*htw_ratio*THUMBNAIL_SIZE), name_suffix='2x')
         self.picture = resize_image(self, self.src, size=(PICTURE_WIDTH, htw_ratio*PICTURE_WIDTH), name_suffix='full')
 
         super().save(*args, **kwargs)
