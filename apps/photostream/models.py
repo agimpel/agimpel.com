@@ -63,7 +63,7 @@ class Photo(models.Model):
     exif = ExifField(source='src')
 
     # creation timestamp
-    date = models.DateTimeField(auto_now_add = True)
+    date = models.DateTimeField(auto_now_add = True, editable=True)
 
     # processed images
     thumbnail_1x = models.ImageField(editable=False)
