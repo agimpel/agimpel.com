@@ -1,0 +1,17 @@
+<div class="photo-gallery grid">
+    {% for photo in photos %}
+        <figure class="sliding">
+            <a href="{{ photo.picture.url }}" data-size="{{ photo.picture.width }}x{{ photo.picture.height }}">
+                <img src="{{ photo.thumbnail_1x.url }}" srcset="{{ photo.thumbnail_1x.url }}, {{ photo.thumbnail_2x.url }} 2x" title="{{ photo.title }} ({{ photo.date|date:'d.m.Y' }})" />
+            </a>
+            <figcaption style="display:none">
+                <p class="photo_title">{{ photo.title }} ({{ photo.date|date:'d.m.Y' }})</p>
+                {% if photo.description %}
+                    <p class="photo_description">{{ photo.description }}</p><br>
+                {% endif %}
+                <p class="photo_exifinfo"><span>{{ photo.exif_model }}</span><span>{{ photo.exif_focallength }}</span><span>f/{{ photo.exif_aperture }}</span><span>{{ photo.exif_shutterspeed }} s</span><span>ISO {{ photo.exif_iso }}</span></p>
+                <p class="image_more"><a href="/photostream/{{ photo.pk }}">see details</a></p>
+            </figcaption>
+        </figure>
+    {% endfor %}
+</div>

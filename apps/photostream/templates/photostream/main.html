@@ -1,0 +1,20 @@
+{% extends 'main.html' %}
+
+{% block add_head %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'photostream/css/all.css' %}"> 
+    <link rel="stylesheet" href="{% static 'photostream/css/photoswipe.css' %}"> 
+    <link rel="stylesheet" href="{% static 'photostream/css/default-skin/default-skin.css' %}">
+{% endblock add_head %}
+
+{% block menu %}
+    {% include 'menu.html' with menu_active='photostream' menu_title='photostream' %}
+{% endblock menu %}
+
+{% block add_foot %}
+    {% include 'photostream/photoswipe.html' %}
+    {% load static %}
+    <script src="{% static 'photostream/js/photoswipe.min.js' %}"></script> 
+    <script src="{% static 'photostream/js/photoswipe-ui-default.min.js' %}"></script>
+    <script src="{% static 'photostream/js/photoswipe_gallery.js' %}"></script>
+{% endblock add_foot %}

@@ -1,0 +1,72 @@
+.pswp__caption__center {
+    
+    .photo_title {
+        font-family: 'Montserrat', serif;
+        font-size: 18px;
+        padding-bottom: 4px;
+        font-weight: normal;
+    }
+
+    .photo_title {
+        font-family: 'Montserrat', sans-serif;
+        padding-bottom: 4px;
+        font-weight: normal;
+    }
+
+    .photo_exifinfo {
+        width: 100%;
+        display: inline-flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        span {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: normal;
+        }
+    }
+
+    .photo_more {
+        a {
+            text-decoration: underline;
+            font-family: 'Montserrat', serif;
+            font-weight: normal;
+        }
+    }
+}
+
+.single {
+    
+    .photo_title {
+        font-family: 'Montserrat', serif;
+        font-size: 24px;
+        padding-bottom: 2px;
+        font-weight: normal;
+    }
+
+    .photo_exifinfo {
+        span {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10pt;
+            font-weight: normal;
+            line-height: 1.35;
+            padding-right: .75em;
+
+            &:nth-child(1) {
+                display: block;
+                @include s-up {
+                    display: inline;
+                }
+            }
+
+            
+        }
+    }
+
+    .photo_description {
+        font-family: 'Montserrat', serif;
+        font-weight: normal;
+
+        a {
+            text-decoration: underline;
+        }
+    }
+}
