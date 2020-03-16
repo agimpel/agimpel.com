@@ -15,7 +15,7 @@ class IndexView(generic.TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['photos'] = Photo.objects.all()
+        context['photos'] = Photo.objects.all().order_by('-date')
         context['title'] = 'Photostream'
         context['nav_title'] = [['photostream', None]]
         return context

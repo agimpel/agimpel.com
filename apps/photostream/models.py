@@ -7,6 +7,7 @@ import uuid
 import logging
 from PIL import Image as pil_image
 from exiffield.fields import ExifField
+from exiffield.getters import get_datetaken
 from slugify import slugify
 
 logger = logging.getLogger("agimpel.photostream.models")
@@ -60,10 +61,12 @@ class Photo(models.Model):
     description = models.CharField("Description", max_length=2000, blank=True, null=True)
     slug = models.SlugField(editable=False)
     src = models.ImageField("Image", upload_to=scramble_uploaded_filename)
-    exif = ExifField(source='src')
 
     # creation timestamp
-    date = models.DateTimeField(default = timezone.now)
+    date = models.DateTimeField(editable = False)
+
+    # EXIF data
+    exif = ExifField(source='src', denormalized_fields={'date': get_datetaken})
 
     # processed images
     thumbnail_1x = models.ImageField(editable=False)
