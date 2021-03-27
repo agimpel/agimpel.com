@@ -14,8 +14,8 @@
     </div>
     <div class="spacer small"></div>
     <figcaption class="single">
-        <p class="photo_title">{{ photo.title }} ({{ photo.date|date:'d.m.Y' }})</p>
-        <p class="photo_exifinfo"><span>{{ photo.exif_model }}</span><span>{{ photo.exif_focallength }}</span><span>f/{{ photo.exif_aperture }}</span><span>{{ photo.exif_shutterspeed }} s</span><span>ISO {{ photo.exif_iso }}</span></p>
+        <p class="photo_title">{{ photo.title }} ({{ photo.exif_date|date:'d.m.Y' }})</p>
+        <p class="photo_exifinfo"><span>{{ photo.exif_model }}</span><span>{{ photo.exif_focallength }} mm</span><span>f/{{ photo.exif_aperture }}</span><span>{{ photo.exif_shutterspeed }} s</span><span>ISO {{ photo.exif_iso }}</span></p>
         {% if photo.description %}
         <br>
         <p class="image_description">{{ photo.description|safe }}</p>

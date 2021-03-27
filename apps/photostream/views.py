@@ -5,7 +5,7 @@ from django.template import loader
 from django.urls import reverse
 import logging
 
-from .models import Photo
+from apps.gallery.models import Image
 
 logger = logging.getLogger("agimpel.photostream.views")
 
@@ -15,7 +15,7 @@ class IndexView(generic.TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['photos'] = Photo.objects.all().order_by('-date')
+        context['photos'] = Image.objects.all().order_by('-exif_date')
         context['title'] = 'Photostream'
         context['nav_title'] = [['photostream', None]]
         return context
@@ -24,12 +24,12 @@ class IndexView(generic.TemplateView):
 
 class PhotoView(generic.DetailView):
     template_name = 'photostream/photo.html'
-    model = Photo
+    model = Image
     context_object_name = 'photo'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        img = Photo.objects.get(pk=self.kwargs['pk'])
+        img = Image.objects.get(pk=self.kwargs['pk'])
         context['title'] = img.title
         context['nav_title'] = [['photostream', reverse('photostream:index')], ['image #'+self.kwargs['pk'], None]]
         return context
