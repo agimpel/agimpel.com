@@ -26,7 +26,7 @@
 
     .photo_more {
         a {
-            text-decoration: underline;
+            color: #edb88b;
             font-family: 'Montserrat', serif;
             font-weight: normal;
         }
@@ -35,17 +35,35 @@
 
 .single {
     
+    text-align: center;
+    
     .photo_title {
         font-family: 'Montserrat', serif;
-        font-size: 24px;
-        padding-bottom: 2px;
+        font-size: 16px;
+        padding-bottom: 5px;
         font-weight: normal;
+
+        @include m-up {
+            font-size: 24px;
+        }
     }
+
+    .photo_date {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 8pt;
+        font-weight: normal;
+        line-height: 1.35;
+        padding-bottom: 5px;
+
+        @include m-up {
+            font-size: 10pt;
+        }
+    }            
 
     .photo_exifinfo {
         span {
             font-family: 'Montserrat', sans-serif;
-            font-size: 10pt;
+            font-size: 8pt;
             font-weight: normal;
             line-height: 1.35;
             padding-right: .75em;
@@ -57,13 +75,34 @@
                 }
             }
 
-            
+            @include m-up {
+                font-size: 10pt;
+            }
         }
     }
 
     .photo_description {
         font-family: 'Montserrat', serif;
         font-weight: normal;
+        font-size: 10pt;
+
+        @include m-up {
+            font-size: 12pt;
+        }
+
+        a {
+            text-decoration: underline;
+        }
+    }
+
+    .photo_tags {
+        font-family: 'Montserrat', serif;
+        font-weight: normal;
+        font-size: 10pt;
+
+        @include m-up {
+            font-size: 12pt;
+        }
 
         a {
             text-decoration: underline;

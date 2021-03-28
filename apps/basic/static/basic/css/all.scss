@@ -27,9 +27,9 @@
     animation-delay: -15s;
     transition: background 200ms ease-in-out 300ms;
     
-    @include m-up {
-        background-size: 135%;
-    }
+    // @include m-up {
+    //     background-size: 135%;
+    // }
 }
 
 #home-bg {
@@ -207,6 +207,6 @@
 
 
 @keyframes animatedBackground {
-    0% { background-position: 0 0; }
-    100% { background-position: 100% 0; }
+    0% { background-position-x: 0; }
+    100% { background-position-x: 100%; }
 }

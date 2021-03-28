@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'apps.journal',
     'apps.projects',
     'apps.photostream',
+    'django_cleanup.apps.CleanupConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

@@ -1,0 +1,15 @@
+<div class="image-gallery grid">
+    {% for image in images %}
+        <figure class="sliding" style="grid-column-end: span {{ image.category_cols }}; grid-row-end: span {{ image.category_rows }}">
+            <a href="{{ image.picture.url }}" data-size="{{ image.picture.width }}x{{ image.picture.height }}">
+                <img src="{{ image.thumbnail_1x.url }}" srcset="{{ image.thumbnail_1x.url }}, {{ image.thumbnail_2x.url }} 2x" title="{{ image.title }}" />
+            </a>
+            <figcaption style="display:none">
+                <p class="image_title">{{ image.title }}</p>
+                <p class="image_date">{{ image.exif_date|date:'d.m.Y' }}</p>
+                <p class="image_exifinfo"><span>{{ image.exif_model }}</span><span>{{ image.exif_focallength }} mm</span><span>f/{{ image.exif_aperture }}</span><span>{{ image.exif_shutterspeed }} s</span><span>ISO {{ image.exif_iso }}</span></p>
+                <p class="image_more"><a href="/gallery/image/{{ image.pk }}/{{ image.slug }}">see details</a></p>
+            </figcaption>
+        </figure>
+    {% endfor %}
+</div>

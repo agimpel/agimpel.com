@@ -48,7 +48,7 @@ class ImageAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (None, {
-           'fields': ('title', 'description', 'slug', 'upload_date', 'image_tag', 'src')
+           'fields': ('title', 'description', 'slug', 'upload_date', 'image_tag', 'src', 'photostream_cols', 'photostream_rows')
         }),
         ('Relations', {
             'fields': (('portfolio', 'portfolio_cols', 'portfolio_rows'), ('category', 'category_cols', 'category_rows'), ('trip', 'trip_cols', 'trip_rows'))

@@ -23,13 +23,15 @@ class IndexView(generic.TemplateView):
 
 
 class PhotoView(generic.DetailView):
-    template_name = 'photostream/photo.html'
+    template_name = 'gallery/image.html'
     model = Image
-    context_object_name = 'photo'
+    context_object_name = 'image'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         img = Image.objects.get(pk=self.kwargs['pk'])
+        slug = img.slug if len(img.slug) < 20 else img.slug[0:20] + "..."
+
         context['title'] = img.title
-        context['nav_title'] = [['photostream', reverse('photostream:index')], ['image #'+self.kwargs['pk'], None]]
+        context['nav_title'] = [['photostream', reverse('photostream:index')], [slug, None]]
         return context

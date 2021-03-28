@@ -9,7 +9,14 @@ def index(request):
     all_backgrounds = Background.objects.filter(show=True).all()
 
     number_backgrounds = len(all_backgrounds)
-    i_background = random.randint(0, number_backgrounds-1)
+    try:
+        i_background = random.randint(0, number_backgrounds-1)
+        background_url = all_backgrounds[i_background].picture.url
+        background_title = all_backgrounds[i_background].title
+    except:
+        i_background = 0
+        background_url = ""
+        background_title = "-"
 
 
     context = {
@@ -20,8 +27,8 @@ def index(request):
         'number_backgrounds': number_backgrounds,
         'i_background': i_background,
         'current_background': i_background+1,
-        'background_url': all_backgrounds[i_background].picture.url,
-        'background_title': all_backgrounds[i_background].title,
+        'background_url': background_url,
+        'background_title': background_title,
     }
 
     return render(request, 'basic/index.html', context=context)

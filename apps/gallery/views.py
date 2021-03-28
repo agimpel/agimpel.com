@@ -5,7 +5,7 @@ from django.template import loader
 from django.urls import reverse
 import logging
 
-from .models import Category, Trip, Image
+from .models import Category, Trip, Image, Portfolio
 
 logger = logging.getLogger("agimpel.gallery.views")
 
@@ -16,6 +16,7 @@ class IndexView(generic.TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
+        context['portfolios'] = Portfolio.objects.all()
         context['trips'] = Trip.objects.all()
         context['trips_shown'] = []
         context['trips_hidden'] = []
@@ -45,6 +46,21 @@ class CategoryView(generic.ListView):
         context['nav_title'] = [['gallery', reverse('gallery:index')], [self.category.slug, None]]
         return context
 
+
+class PortfolioView(generic.ListView):
+    template_name = 'gallery/portfolio.html'
+    context_object_name = 'images'
+
+    def get_queryset(self):
+        self.portfolio = get_object_or_404(Portfolio, slug=self.kwargs['slug'])
+        return self.portfolio.images.all()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['portfolio'] = self.portfolio
+        context['title'] = self.portfolio.title
+        context['nav_title'] = [['gallery', reverse('gallery:index')], [self.portfolio.slug, None]]
+        return context
 
 
 class TripView(generic.ListView):
@@ -77,11 +93,9 @@ class ImageView(generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         img = Image.objects.get(pk=self.kwargs['pk'])
+        slug = img.slug if len(img.slug) < 20 else img.slug[0:20] + "..."
+
         context['title'] = img.title
-        if img.category:
-            context['nav_title'] = [['gallery', reverse('gallery:index')], [img.category.slug, reverse('gallery:category', args=(img.category.slug,))], ['image', None]]
-        elif img.trip:
-            context['nav_title'] = [['gallery', reverse('gallery:index')], [img.trip.slug, reverse('gallery:trip', args=(img.trip.slug,))], ['image', None]]
-        else:
-            context['nav_title'] = [['gallery', reverse('gallery:index')], ['image', None]]
+        context['nav_title'] = [['gallery', reverse('gallery:index')], [slug, None]]
+
         return context

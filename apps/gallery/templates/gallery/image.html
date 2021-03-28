@@ -15,10 +15,27 @@
     <div class="spacer small"></div>
     <figcaption class="single">
         <p class="image_title">{{ image.title }}</p>
-        <p class="image_exifinfo"><span>{{ image.exif_model }}</span><span>{{ image.exif_focallength }}</span><span>f/{{ image.exif_aperture }}</span><span>{{ image.exif_shutterspeed }} s</span><span>ISO {{ image.exif_iso }}</span></p>
+        <p class="image_date">{{ image.exif_date|date:'d.m.Y' }}</p>
+        <p class="image_exifinfo"><span>{{ image.exif_model }}</span><span>{{ image.exif_focallength }} mm</span><span>f/{{ image.exif_aperture }}</span><span>{{ image.exif_shutterspeed }} s</span><span>ISO {{ image.exif_iso }}</span></p>
         {% if image.description %}
         <br>
         <p class="image_description">{{ image.description|safe }}</p>
+        {% endif %}
+        {% if image.portfolio or image.category or image.trip %}
+            <br>
+            {% spaceless %}
+            <p class="image_tags">This image is part of 
+                {% if image.portfolio %}
+                 the portfolio <a href="{% url 'gallery:portfolio' slug=image.portfolio.slug %}">{{ image.portfolio.title }}</a>{% if image.category and image.trip %}, {% elif image.category or image.trip %} and {% else %}.{% endif %}
+                {% endif %}
+                {% if image.category %}
+                 the category <a href="{% url 'gallery:category' slug=image.category.slug %}">{{ image.category.title }}</a>{% if image.trip %} and {% else %}.{% endif %}
+                {% endif %}
+                {% if image.trip %}
+                the trip <a href="{% url 'gallery:trip' slug=image.trip.slug %}">{{ image.trip.title }}</a>.
+               {% endif %}
+            </p>
+            {% endspaceless %}
         {% endif %}
     </figcaption>
 {% else %}

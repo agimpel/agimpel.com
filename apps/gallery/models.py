@@ -69,7 +69,7 @@ class Cover(models.Model):
     position = models.CharField(max_length=200, default="50% 50%")
 
     # original image (not saved)
-    src = models.ImageField("Image", upload_to=None)
+    src = models.ImageField("Image", upload_to=None, blank=True)
 
     # processed images
     thumbnail_1x = models.ImageField(editable=False)
@@ -103,8 +103,8 @@ class Cover(models.Model):
 
     def delete(self, *args, **kwargs):
         self.src.delete(save=False)
-        self.thumbnail_1x.delete(save=False)
-        self.thumbnail_2x.delete(save=False)
+        self.thumbnail_1x.delete(save=True)
+        self.thumbnail_2x.delete(save=True)
         super().delete(*args, **kwargs)
 
 
@@ -114,7 +114,7 @@ class Background(models.Model):
     show = models.BooleanField(default=True)
 
     # original image (not saved)
-    src = models.ImageField("Image", upload_to=None)
+    src = models.ImageField("Image", upload_to=None, blank=True)
 
     # processed images
     picture = models.ImageField(editable=False)
@@ -124,7 +124,7 @@ class Background(models.Model):
 
 
     def __str__(self):
-        return self.slug
+        return self.title
 
 
     def save(self, *args, **kwargs):
@@ -145,8 +145,8 @@ class Background(models.Model):
 
 
     def delete(self, *args, **kwargs):
-        self.src.delete(save=False)
-        self.picture.delete(save=False)
+        self.src.delete(save=True)
+        self.picture.delete(save=True)
         super().delete(*args, **kwargs)
 
 
@@ -221,6 +221,8 @@ class Image(models.Model):
     category_rows = models.IntegerField("Row Span", default=1)
     trip_cols = models.IntegerField("Col Span", default=1)
     trip_rows = models.IntegerField("Row Span", default=1)
+    photostream_cols = models.IntegerField("Col Span", default=1)
+    photostream_rows = models.IntegerField("Row Span", default=1)
 
     # related models
     portfolio = models.ForeignKey(Portfolio, related_name='images', on_delete=models.CASCADE, blank=True, null=True)
@@ -298,9 +300,9 @@ class Image(models.Model):
 
 
     def delete(self, *args, **kwargs):
-        self.src.delete(save=False)
-        self.thumbnail_1x.delete(save=False)
-        self.thumbnail_2x.delete(save=False)
-        self.picture.delete(save=False)
+        self.src.delete(save=True)
+        self.thumbnail_1x.delete(save=True)
+        self.thumbnail_2x.delete(save=True)
+        self.picture.delete(save=True)
 
         super().delete(*args, **kwargs)
