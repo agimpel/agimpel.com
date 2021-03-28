@@ -13,6 +13,7 @@ from slugify import slugify
 logger = logging.getLogger("agimpel.gallery.models")
 
 THUMBNAIL_WIDTH = 300
+BACKGROUND_WIDTH = 2560
 COVER_WIDTH = 960
 PICTURE_WIDTH = 1920
 
@@ -26,13 +27,16 @@ def scramble_uploaded_filename(instance, filename):
     elif isinstance(instance, Cover):
         uid = instance.slug_uid
         prefix = 'gallery/covers/'
+    elif isinstance(instance, Background):
+        uid = instance.slug_uid
+        prefix = 'gallery/backgrounds/'
     else:
         uid = uuid.uuid4()
         prefix = 'gallery/others/'
     return "{}{}.{}".format(prefix, uid, extension)
 
 
-def resize_image(instance, input_image, size=(256, 256), name_suffix=''):
+def resize_image(instance, input_image, size=(256, 256), name_suffix='', quality=95):
 
     if not input_image or input_image == "":
         return
@@ -55,7 +59,7 @@ def resize_image(instance, input_image, size=(256, 256), name_suffix=''):
     new_filename = basename + "_" + name_suffix + "." + extension
 
     # save the image in MEDIA_ROOT and return the filename
-    image.save(os.path.join(settings.MEDIA_ROOT, new_filename), quality=95, optimize=True)
+    image.save(os.path.join(settings.MEDIA_ROOT, new_filename), quality=quality, optimize=True)
 
     return new_filename
 
@@ -101,6 +105,48 @@ class Cover(models.Model):
         self.src.delete(save=False)
         self.thumbnail_1x.delete(save=False)
         self.thumbnail_2x.delete(save=False)
+        super().delete(*args, **kwargs)
+
+
+
+class Background(models.Model):
+    title = models.CharField(max_length=200)
+    show = models.BooleanField(default=True)
+
+    # original image (not saved)
+    src = models.ImageField("Image", upload_to=None)
+
+    # processed images
+    picture = models.ImageField(editable=False)
+
+    # uid
+    slug_uid = models.CharField(editable=False, default="", max_length=2000)
+
+
+    def __str__(self):
+        return self.slug
+
+
+    def save(self, *args, **kwargs):
+        # generate and set thumbnail
+        if not self.slug_uid:
+            self.slug_uid = uuid.uuid4()
+
+        if self.src:
+            width = self.src.width
+            height = self.src.height
+            htw_ratio = height/width
+
+            self.picture = resize_image(self, self.src, size=(BACKGROUND_WIDTH, htw_ratio*BACKGROUND_WIDTH), name_suffix='background', quality=80)
+
+            self.src.delete(save=False)
+
+        super().save(*args, **kwargs)
+
+
+    def delete(self, *args, **kwargs):
+        self.src.delete(save=False)
+        self.picture.delete(save=False)
         super().delete(*args, **kwargs)
 
 

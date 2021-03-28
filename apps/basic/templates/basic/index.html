@@ -30,15 +30,29 @@
 			{% endblock menu %}
 			<div class="content-pusher">
 				<div class="content">
-                    <div id="home-wrapper">
+                    <div id="home-wrapper" style="background-image: url('{{ background_url }}');">
                         <div id="home-bg">
-                            <div id="box-wrapper">
-                                <div id="title-box"><p>Andreas Gimpel</p></div>
-                                <a href="/gallery" class="home-box"><div><p>Gallery</p></div></a>
-                                <a href="/photostream" class="home-box"><div><p>Photostream</p></div></a>
-                                <a href="/journal" class="home-box"><div><p>Journal</p></div></a>
-                                <a href="/projects" class="home-box"><div><p>Projects</p></div></a>
-                            </div>
+							<div id="index-wrapper">
+								<div id="box-wrapper">
+									<div id="title-box"><p>Andreas Gimpel</p></div>
+									<a href="/gallery" class="home-box"><div><p>Gallery</p></div></a>
+									<a href="/photostream" class="home-box"><div><p>Photostream</p></div></a>
+									<a href="/journal" class="home-box"><div><p>Journal</p></div></a>
+									<a href="/projects" class="home-box"><div><p>Projects</p></div></a>
+								</div>
+								<div id="background-switcher-wrapper">
+									<div id="background-switcher">
+										<div id="switcher-top">
+											<span id="switcher-backward">«</span>
+											<span id="switcher-counter">{{ current_background }} / {{ number_backgrounds }}</span>
+											<span id="switcher-forward">»</span>
+										</div>
+										<div id="switcher-bottom">
+											<span id="switcher-title">{{ background_title }}</span>
+										</div>
+									</div>
+								</div>
+							</div>
                         </div>
                     </div>
 				</div>
@@ -49,6 +63,12 @@
         <script src="{% static 'js/sidebar_effects.js' %}"></script>
 		<script src="{% static 'js/title.js' %}"></script>
 		<script src="{% static 'js/slidein_effects.js' %}"></script>
+		<script>
+			var backgrounds = [{{ background_urls|safe }}];
+			var titles = [{{ background_titles|safe }}];
+			var i_background = {{ i_background }};
+		</script>
+		<script src="{% static 'basic/js/background-switcher.js' %}"></script>
 	</body>
 </html>
 
