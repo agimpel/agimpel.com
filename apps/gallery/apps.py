@@ -2,4 +2,5 @@ from django.apps import AppConfig
 
 
 class GalleryConfig(AppConfig):
-    name = 'gallery'
+    name = 'apps.gallery'
+    default_auto_field = 'django.db.models.BigAutoField'

@@ -5,6 +5,7 @@ choicesenum==0.7.0
 Django==3.2
 django-cleanup==5.2.0
 django-exiffield==3.0.0
+gunicorn==20.1.0
 isort==5.8.0
 jsonfield==3.1.0
 jsonfield2==4.0.0.post0
@@ -22,3 +23,4 @@ typed-ast==1.4.3
 uuid==1.30
 whitenoise==5.2.0
 wrapt==1.12.1
+uWSGI==2.0.19.1

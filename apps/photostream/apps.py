@@ -2,4 +2,5 @@ from django.apps import AppConfig
 
 
 class PhotostreamConfig(AppConfig):
-    name = 'photostream'
+    name = 'apps.photostream'
+    default_auto_field = 'django.db.models.BigAutoField'
