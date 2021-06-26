@@ -1,3 +1,7 @@
+{% if category.description %}
+    <p class="category_description">{{ category.description|safe }}</p>
+    <br><br>
+{% endif %}
 <div class="image-gallery grid">
     {% for image in images %}
         <figure class="sliding" style="grid-column-end: span {{ image.category_cols }}; grid-row-end: span {{ image.category_rows }}">

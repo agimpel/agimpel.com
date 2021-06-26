@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.db.models.fields import DateField
 from django.utils import timezone
 from apps.gallery.models import Trip
 
@@ -96,7 +97,8 @@ class Tag(models.Model):
 class Entry(models.Model):
     title = models.CharField("Title", max_length=200)
     short_title = models.CharField("Short title", max_length=40)
-    summary = models.TextField("Summary", max_length=2000)
+    summary = models.TextField("Summary", max_length=20000)
+    date = models.DateField("Date")
     slug = models.SlugField(editable=False)
     show = models.BooleanField("Show", default=True)
     order = models.IntegerField("Priority", blank=True, null=True)

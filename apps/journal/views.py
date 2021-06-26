@@ -51,7 +51,7 @@ class IndexView(generic.TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['entries'] = Entry.objects.all().order_by('-order', 'title')
+        context['entries'] = Entry.objects.all().order_by('-date')
         context['columns'] = Category.objects.filter(show=True).order_by('order', 'title')
         context['entries_datamatrix'] = prepare_entries_datamatrix(Entry.objects.all().order_by('-order', 'title'), Category.objects.filter(show=True).order_by('order', 'title'))
         context['title'] = 'Journal'

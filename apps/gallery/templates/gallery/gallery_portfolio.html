@@ -1,3 +1,7 @@
+{% if portfolio.description %}
+    <p class="portfolio_description">{{ portfolio.description|safe }}</p>
+    <br><br>
+{% endif %}
 <div class="image-gallery grid">
     {% for image in images %}
         <figure class="sliding" style="grid-column-end: span {{ image.portfolio_cols }}; grid-row-end: span {{ image.portfolio_rows }}">

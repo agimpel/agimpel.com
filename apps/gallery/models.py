@@ -2,12 +2,14 @@ from django.db import models
 from django.conf import settings
 from django.utils.timezone import make_aware
 from django.utils.html import mark_safe
+from django.urls import reverse
 
 import os
 import uuid
 import logging
 import datetime
 from PIL import Image as pil_image
+import exifread
 from slugify import slugify
 
 logger = logging.getLogger("agimpel.gallery.models")
@@ -193,6 +195,7 @@ class Trip(models.Model):
     title = models.CharField("Title", max_length=200)
     slug = models.SlugField("Slug", max_length=40)
     description = models.CharField("Description", max_length=2000, blank=True, null=True)
+    date = models.DateField("Date")
     cover = models.ForeignKey('Image', related_name='tripcover', on_delete=models.CASCADE, blank=True, null=True)
     show = models.BooleanField("Show", default=True)
     priority = models.IntegerField("Priority", blank=True, null=True)
@@ -201,7 +204,6 @@ class Trip(models.Model):
         return self.title
 
     def delete(self, *args, **kwargs):
-        for image in self.images.all(): image.delete()
         super().delete(*args, **kwargs)
 
 
@@ -217,10 +219,13 @@ class Image(models.Model):
     # position of image in grid
     portfolio_cols = models.IntegerField("Col Span", default=1)
     portfolio_rows = models.IntegerField("Row Span", default=1)
+    portfolio_priority = models.IntegerField("Priority", default=1)
     category_cols = models.IntegerField("Col Span", default=1)
     category_rows = models.IntegerField("Row Span", default=1)
+    category_priority = models.IntegerField("Priority", default=1)
     trip_cols = models.IntegerField("Col Span", default=1)
     trip_rows = models.IntegerField("Row Span", default=1)
+    trip_priority = models.IntegerField("Priority", default=1)
     photostream_cols = models.IntegerField("Col Span", default=1)
     photostream_rows = models.IntegerField("Row Span", default=1)
 
@@ -250,7 +255,11 @@ class Image(models.Model):
 
 
     def image_tag(self):
-        return mark_safe('<a href="%s"><img src="%s" width="150"></a>' % (self.picture.url, self.thumbnail_1x.url))
+        if self.pk:
+            view_url = reverse('gallery:image', args=(self.pk, self.slug,))
+            return mark_safe('<a href="%s"><img src="%s" width="150"></a>' % (view_url, self.thumbnail_1x.url))
+        else:
+            return ""
     image_tag.short_description = 'Current image'
 
 
@@ -277,21 +286,23 @@ class Image(models.Model):
             self.picture = resize_image(self, self.src, size=(PICTURE_WIDTH, htw_ratio*PICTURE_WIDTH), name_suffix='full')
 
             # scrape the EXIF data
-            img_exif = pil_image.open(self.src).getexif()
-            if img_exif is None:
+            tags = exifread.process_file(self.src.open(mode='rb'), details=False)
+            try:
+                self.exif_model = tags['Image Model']
+                self.exif_focallength = str(tags['EXIF FocalLength'])
+                self.exif_iso = str(tags['EXIF ISOSpeedRatings'].values[0])
+
+                self.exif_shutterspeed = str(tags['EXIF ExposureTime'])
+                self.exif_aperture = str(round(tags['EXIF FNumber'].values[0].decimal(), 1))
+                self.exif_date = make_aware(datetime.datetime.strptime(str(tags['EXIF DateTimeOriginal']), '%Y:%m:%d %H:%M:%S'))
+            except Exception as e:
+                logger.exception(f"Reading of image exif data failed: {e}")
                 self.exif_model = "?"
                 self.exif_focallength = "?"
                 self.exif_iso = "?"
                 self.exif_shutterspeed = "?"
                 self.exif_aperture = "?"
                 self.exif_date = None
-            else:
-                self.exif_model = img_exif.get(272)
-                self.exif_focallength = img_exif.get(37386)
-                self.exif_iso = img_exif.get(34855)
-                self.exif_shutterspeed = img_exif.get(33434) if img_exif.get(33434) > 1 else "1/"+str(int(1/img_exif.get(33434)))
-                self.exif_aperture = img_exif.get(33437)
-                self.exif_date = make_aware(datetime.datetime.strptime(img_exif.get(36867), '%Y:%m:%d %H:%M:%S'))
 
             # remove the source image so it is no longer available
             self.src.delete(save=False)
