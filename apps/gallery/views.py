@@ -17,11 +17,11 @@ class IndexView(generic.TemplateView):
         context = super().get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
         context['portfolios'] = Portfolio.objects.all()
-        context['trips'] = Trip.objects.all()
+        context['trips'] = Trip.objects.all().order_by('-date')
         context['trips_shown'] = []
         context['trips_hidden'] = []
         for trip in context['trips']:
-            if trip.show:
+            if trip.show and len(context['trips_shown'])<11:
                 context['trips_shown'].append(trip)
             else: 
                 context['trips_hidden'].append(trip)
@@ -37,7 +37,7 @@ class CategoryView(generic.ListView):
 
     def get_queryset(self):
         self.category = get_object_or_404(Category, slug=self.kwargs['slug'])
-        return self.category.images.all()
+        return self.category.images.all().order_by('-category_priority', '-exif_date')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -53,7 +53,7 @@ class PortfolioView(generic.ListView):
 
     def get_queryset(self):
         self.portfolio = get_object_or_404(Portfolio, slug=self.kwargs['slug'])
-        return self.portfolio.images.all()
+        return self.portfolio.images.all().order_by('-portfolio_priority', '-exif_date')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -69,7 +69,7 @@ class TripView(generic.ListView):
 
     def get_queryset(self):
         self.trip = get_object_or_404(Trip, slug=self.kwargs['slug'])
-        return self.trip.images.all()
+        return self.trip.images.all().order_by('-trip_priority', 'exif_date')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

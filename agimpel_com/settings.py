@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
-import os
+import os, sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,12 +20,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'change+this'
+SECRET_KEY = os.environ.get('DJANGO_KEY') or sys.exit()
+
+ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS').split(",") or sys.exit()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+DEBUG = os.environ.get('DJANGO_DEBUG') or False
+if DEBUG: ALLOWED_HOSTS = ['localhost'] # do not allow external access to site if debug is on
 
 
 # Application definition
@@ -128,6 +129,12 @@ USE_L10N = True
 USE_TZ = True
 
 
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/2.2/howto/static-files/
+
+STATIC_URL = '/static/'
+
+
 # Media files (uploaded)
 
 MEDIA_URL = '/media/'
@@ -173,8 +180,8 @@ LOGGING = {
     },
     'loggers': {
         'django': {
-            'handlers': ['console','mail_admins'],
-            'level': 'ERROR',
+            'handlers': ['file','console','mail_admins'],
+            'level': 'INFO',
             'propagate': True,
         },
         'django.request': {

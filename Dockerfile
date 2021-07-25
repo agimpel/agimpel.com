@@ -22,6 +22,7 @@ RUN set -ex \
 # copy all of the code files
 COPY . .
 RUN chmod -R 777 *
+RUN chown -R appuser:appuser /app
 
 # set up the virtual environment
 ENV VIRTUAL_ENV /env

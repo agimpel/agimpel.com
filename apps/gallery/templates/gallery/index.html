@@ -14,7 +14,7 @@
     {% include 'medium_heading.html' with title='Portfolios' %}
     <div class="portfolio-gallery grid">
     {% for portfolio in portfolios %}
-        <a class="sliding" href="{% url 'gallery:portfolio' slug=portfolio.slug %}" {% if portfolio.order %}style="order:{{ portfolio.priority }}"{% endif %}>
+        <a class="sliding" href="{% url 'gallery:portfolio' slug=portfolio.slug %}" {% if portfolio.priority %}style="order:-{{ portfolio.priority }}"{% endif %}>
             <div class="cover-wrap">
                 {% if portfolio.cover %}
                     <img class="cover" src="{{ portfolio.cover.thumbnail_1x.url }}" srcset="{{ portfolio.cover.thumbnail_1x.url }}, {{ portfolio.cover.thumbnail_2x.url }} 2x" style="object-position:{{ portfolio.cover.position }}">
@@ -34,7 +34,7 @@
     {% include 'medium_heading.html' with title='Categories' %}
     <div class="category-gallery grid">
         {% for category in categories %}
-            <a class="sliding" href="{% url 'gallery:category' slug=category.slug %}" {% if category.priority %}style="order:{{ category.priority }}"{% endif %}>
+            <a class="sliding" href="{% url 'gallery:category' slug=category.slug %}" {% if category.priority %}style="order:-{{ category.priority }}"{% endif %}>
                 <div class="cover-wrap">
                     {% if category.cover %}
                         <img class="cover" src="{{ category.cover.thumbnail_1x.url }}" srcset="{{ category.cover.thumbnail_1x.url }}, {{ category.cover.thumbnail_2x.url }} 2x">
@@ -54,7 +54,7 @@
     {% include 'medium_heading.html' with title='Trips and Destinations' %}
     <div class="trip-gallery grid">
     {% for trip in trips_shown %}
-        <a class="sliding" href="{% url 'gallery:trip' slug=trip.slug %}" {% if trip.priority %}style="order:{{ trip.priority }}"{% endif %}>
+        <a class="sliding" href="{% url 'gallery:trip' slug=trip.slug %}" {% if trip.priority %}style="order:-{{ trip.priority }}"{% endif %}>
             <div class="cover-wrap">
                 {% if trip.cover %}
                     <img class="cover" src="{{ trip.cover.thumbnail_1x.url }}" srcset="{{ trip.cover.thumbnail_1x.url }}, {{ trip.cover.thumbnail_2x.url }} 2x">

@@ -1,3 +1,7 @@
+{% if trip.description %}
+    <p class="trip_description">{{ trip.description|safe }}</p>
+    <br><br>
+{% endif %}
 <div class="image-gallery grid">
     {% for image in images %}
         <figure class="sliding" style="grid-column-end: span {{ image.trip_cols }}; grid-row-end: span {{ image.trip_rows }}">

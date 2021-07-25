@@ -9,10 +9,7 @@ services:
       - ./debug.log:/app/debug.log
     expose:
       - 80
-    environment:
-      - VIRTUAL_HOST=staging.agimpel.com
-      - VIRTUAL_PORT=80
-      - LETSENCRYPT_HOST=staging.agimpel.com
+    # environment defined in .env file
     restart: always
 
 networks:

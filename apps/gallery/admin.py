@@ -32,11 +32,22 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ('title', 'priority')
     search_fields = ['title', 'description']
 
+    def get_form(self, request, obj=None, **kwargs):
+        form = super().get_form(request, obj, **kwargs)
+        if obj: form.base_fields['cover'].queryset = obj.images.all()
+        return form
+
 
 class TripAdmin(admin.ModelAdmin):
     inlines = [ImageInLine_Trip]
-    list_display = ('title', 'priority')
-    search_fields = ['title', 'description']
+    list_display = ('title', 'priority', 'date')
+    search_fields = ['title', 'description', 'date']
+    ordering = ('-date',)
+
+    def get_form(self, request, obj=None, **kwargs):
+        form = super().get_form(request, obj, **kwargs)
+        if obj: form.base_fields['cover'].queryset = obj.images.all()
+        return form
 
 
 class ImageAdmin(admin.ModelAdmin):
@@ -51,7 +62,7 @@ class ImageAdmin(admin.ModelAdmin):
            'fields': ('title', 'description', 'slug', 'upload_date', 'image_tag', 'src', 'photostream_cols', 'photostream_rows')
         }),
         ('Relations', {
-            'fields': (('portfolio', 'portfolio_cols', 'portfolio_rows'), ('category', 'category_cols', 'category_rows'), ('trip', 'trip_cols', 'trip_rows'))
+            'fields': (('portfolio', 'portfolio_cols', 'portfolio_rows', 'portfolio_priority'), ('category', 'category_cols', 'category_rows', 'category_priority'), ('trip', 'trip_cols', 'trip_rows', 'trip_priority'))
         }),
         ('EXIF', {
             'fields': ('exif_model', 'exif_focallength', 'exif_aperture', 'exif_shutterspeed', 'exif_iso', 'exif_date'),
