@@ -2,7 +2,7 @@
 
 if [[ $# > 0 && $1 == 'prod' ]]; then
     echo "Starting server in production environment."
-    eval "docker-compose -f prod.env up -d"
+    eval "docker-compose --env-file prod.env up -d"
     exit 1;
 else
     echo "Starting server in working environment."

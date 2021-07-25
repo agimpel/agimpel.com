@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os, sys
+import logging
+
+logger = logging.getLogger("django.security.settings")
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -19,14 +22,20 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('DJANGO_KEY') or sys.exit()
 
-ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS').split(",") or sys.exit()
+def fail(reason="undefined"):
+	logger.critical(f"Killing process due to security reasons: {reason}")
+	sys.exit()
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = os.environ.get('DJANGO_KEY') or fail("secret key")
+
+ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS').split(",") or fail("allowed hosts")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DJANGO_DEBUG') or False
+DEBUG = os.environ.get('DJANGO_DEBUG') != "0" or False
 if DEBUG: ALLOWED_HOSTS = ['localhost'] # do not allow external access to site if debug is on
+if DEBUG: logger.critical("WARNING: DEBUG IS ON")
 
 
 # Application definition
@@ -144,54 +153,19 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
-    'formatters': {
-        'verbose': {
-            'format': '[{levelname}]\t[{asctime}]\t[{name}]\t[{funcName}]\t{message}',
-            'style': '{',
-        },
-        'simple': {
-            'format': '{levelname} {message}',
-            'style': '{',
-        },
-    },
-    'filters': {
-        'require_debug_true': {
-            '()': 'django.utils.log.RequireDebugTrue',
-        },
-    },
     'handlers': {
         'console': {
-            'level': 'DEBUG',
-            'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
-            'formatter': 'verbose'
         },
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR,'debug.log'),
-            'formatter': 'verbose'
-        },
-        'mail_admins': {
-            'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler',
-            'formatter': 'verbose'
-        }
     },
     'loggers': {
         'django': {
-            'handlers': ['file','console','mail_admins'],
-            'level': 'INFO',
-            'propagate': True,
-        },
-        'django.request': {
-            'handlers': ['mail_admins'],
-            'level': 'ERROR',
-            'propagate': False,
+            'handlers': ['console'],
+            'level': 'DEBUG',
         },
         'agimpel': {
-            'handlers': ['console', 'file', 'mail_admins'],
+            'handlers': ['console'],
             'level': 'DEBUG',
-        }
-    }
+        },
+    },
 }

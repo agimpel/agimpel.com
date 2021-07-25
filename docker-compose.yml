@@ -9,7 +9,14 @@ services:
       - ./debug.log:/app/debug.log
     expose:
       - 80
-    # environment defined in .env file
+    environment:
+      # environment defined in .env file
+      - DJANGO_KEY
+      - DJANGO_DEBUG
+      - DJANGO_ALLOWED_HOSTS
+      - VIRTUAL_HOST
+      - VIRTUAL_PORT
+      - LETSENCRYPT_HOST
     restart: always
 
 networks:
