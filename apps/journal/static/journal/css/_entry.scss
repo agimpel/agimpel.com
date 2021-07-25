@@ -125,3 +125,36 @@
         font-size: 12pt;
     }
 }
+
+
+
+.entry-tag {
+
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+    // border: 2px solid rgba(237, 184, 139, .75);
+    // padding: 3px;
+    cursor: pointer;
+    margin-bottom: 3px;
+
+    img {
+        height: 25px;
+        vertical-align: middle;
+    }
+
+    span {
+        vertical-align: middle;
+        padding-left: .3em;
+    }
+
+    :hover {
+        text-decoration: underline;
+    }
+}
+
+.entry-tag-comma {
+    vertical-align: middle;
+    font-size: 125%;
+    padding-left: .1em;
+}

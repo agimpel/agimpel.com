@@ -10,29 +10,6 @@
 
 <div class="spacer medium"></div>
 
-{% include "medium_heading.html" with title="Tags" %}
-
-<div class="spacer xsmall"></div>
-
-<table class="desc-table">
-    {% for tag_group in tags %}
-    <tr>
-        <td>
-            {{ tag_group.0.title }}
-        </td>
-        <td>
-            {% spaceless %}
-            {% for tag in tag_group.1 %}{% include "journal/tag_styling.html" with tag=tag %}{% if tag is not tag_group.1|last and tag.category.verbose != "I" %}<span>,&nbsp;&nbsp;</span>{% endif %}{% endfor %}
-            {% endspaceless %}
-        </td>
-    </tr>
-    {% endfor %}
-</table>
-
-{% if items %}
-
-<div class="spacer medium"></div>
-
 {% include "medium_heading.html" with title="Details" %}
 
 <div class="spacer xsmall"></div>
@@ -50,18 +27,45 @@
     {% endfor %}
     {% if links %}
     <tr>
-        <td>
+        <td style="padding-top: 0.1em;">
             Links
         </td>
         <td>
             {% for link in links %}
-            <a href="{{ link.url }}" target="_blank">{{ link.title }}</a>&nbsp;
+            {% if not forloop.last and links|length > 1 %}
+                <a href="{{ link.url }}" target="_blank">{{ link.title }}</a>,&nbsp;
+            {% else %}
+                <a href="{{ link.url }}" target="_blank">{{ link.title }}</a>&nbsp;
+            {% endif %}
             {% endfor %}
         </td>
     </tr>    
     {% endif %}
+    <tr>
+        <td style="padding-top: 0.3em;">
+            Tags
+        </td>
+        <td style="text-align: left;line-height: 130%;">
+            {% for tag_group in tags %}
+            {% spaceless %}
+                {% for tag in tag_group.1 %}
+                    <a href="/journal/filter/{{ tag.shown_category }}.{{ tag.slug }}" target="_blank">
+                    <div class="entry-tag">
+                        <img src="{{ tag.icon.url }}" class="tag-icon category-{{ tag.shown_category }}" title="{{ tag.title }}"><span class="tag-text both category-{{ tag.shown_category }}">{{ tag.name }}</span>
+                    </div>
+                    </a>
+                    {% if tag is not tag_group.1|last and tag_group.1|length > 1 %}
+                    <span class="entry-tag-comma">,&nbsp;</span>
+                    {% endif %}
+                {% if tag_group is not tags|last and tags|length > 1 %}
+                <span class="entry-tag-comma">,&nbsp;</span>
+                {% endif %}
+                {% endfor %}
+            {% endspaceless %}
+            {% endfor %}
+        </td>
+    </tr>    
 </table>
-{% endif %}
 
 {% if entry.gallery %}
 
@@ -75,7 +79,7 @@
             </a>
             <figcaption style="display:none">
                 <p class="image_title">{{ image.title }}</p>
-                <p class="image_exifinfo"><span>{{ image.exif_model }}</span><span>{{ image.exif_focallength }}</span><span>f/{{ image.exif_aperture }}</span><span>{{ image.exif_shutterspeed }} s</span><span>ISO {{ image.exif_iso }}</span></p>
+                <p class="image_exifinfo"><span>{{ image.exif_model }}</span><span>{{ image.exif_focallength }} mm</span><span>f/{{ image.exif_aperture }}</span><span>{{ image.exif_shutterspeed }} s</span><span>ISO {{ image.exif_iso }}</span></p>
                 <p class="image_more"><a href="{{ gallery_link }}">see full gallery</a></p>
             </figcaption>
         </figure>

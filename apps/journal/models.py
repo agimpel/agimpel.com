@@ -125,6 +125,7 @@ class Description(models.Model):
     title = models.CharField("Title", max_length=200)
     slug = models.SlugField(editable=False)
     text = models.TextField("Description", max_length=20000)
+    priority = models.IntegerField("Priority", default=0)
     entry = models.ForeignKey(Entry, related_name='descriptions', on_delete=models.CASCADE)
 
     def save(self, *args, **kwargs):
@@ -139,6 +140,7 @@ class Link(models.Model):
     title = models.CharField("Title", max_length=200)
     slug = models.SlugField(editable=False)
     url = models.URLField("Link")
+    priority = models.IntegerField("Priority", default=0)
     entry = models.ForeignKey(Entry, related_name='links', on_delete=models.CASCADE)
 
     def save(self, *args, **kwargs):
