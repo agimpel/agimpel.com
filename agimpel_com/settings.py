@@ -37,6 +37,7 @@ DEBUG = os.environ.get('DJANGO_DEBUG') != "0" or False
 if DEBUG: ALLOWED_HOSTS = ['localhost'] # do not allow external access to site if debug is on
 if DEBUG: logger.critical("WARNING: DEBUG IS ON")
 
+logger.warning(f"Using allowed hosts: {ALLOWED_HOSTS}")
 
 # Application definition
 

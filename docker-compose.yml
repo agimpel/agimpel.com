@@ -11,12 +11,12 @@ services:
       - 80
     environment:
       # environment defined in .env file
-      - DJANGO_KEY
-      - DJANGO_DEBUG
-      - DJANGO_ALLOWED_HOSTS
-      - VIRTUAL_HOST
-      - VIRTUAL_PORT
-      - LETSENCRYPT_HOST
+      - DJANGO_KEY=${DJANGO_KEY}
+      - DJANGO_DEBUG=${DJANGO_DEBUG}
+      - DJANGO_ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
+      - VIRTUAL_HOST=${VIRTUAL_HOST}
+      - VIRTUAL_PORT=${VIRTUAL_PORT}
+      - LETSENCRYPT_HOST=${LETSENCRYPT_HOST}
     restart: always
 
 networks:
