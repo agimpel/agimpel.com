@@ -29,6 +29,9 @@ ENV VIRTUAL_ENV /env
 ENV PATH /env/bin:$PATH
 
 # prepare the Django server
+ARG DJANGO_KEY="default"
+ARG DJANGO_ALLOWED_HOSTS="localhost"
+ARG DJANGO_DEBUG=0
 RUN python manage.py collectstatic --noinput
 
 # expose the port for uWSGI
