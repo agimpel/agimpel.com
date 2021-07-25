@@ -20,9 +20,11 @@ def prepare_entries_datamatrix(entries, columns):
         for column in columns:
             added_column = []
             if entry.categories.filter(category=column): added_column.extend(entry.categories.filter(category=column))
-            for child in column.children.filter(show=False):
-                if entry.categories.filter(category=child): added_column.extend(entry.categories.filter(category=child))
-            added_columns.append(added_column)
+            for child in column.children.all():
+                if entry.categories.filter(category=child):
+                    added_column.extend([child_entry.parent for child_entry in entry.categories.filter(category=child)])
+            
+            added_columns.append(list(set(added_column)))
         matrix.append([entry, added_columns])
     return matrix
 
@@ -68,8 +70,8 @@ class EntryView(generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         entry = Entry.objects.get(slug=self.kwargs['slug'])
-        context['items'] = entry.descriptions.all()
-        context['links'] = entry.links.all()
+        context['items'] = entry.descriptions.all().order_by('-priority')
+        context['links'] = entry.links.all().order_by('-priority')
         columns = Category.objects.filter(show=True).order_by('order', 'title')
         data = prepare_entries_datamatrix([entry], columns)[0][1]
         data_new = []
@@ -93,7 +95,7 @@ class FilterView(generic.ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        filter_string = self.args[0][0:len(self.args[0])-1] if self.args[0][-1] is "/" else self.args[0]
+        filter_string = self.args[0][0:len(self.args[0])-1] if self.args[0][-1] == "/" else self.args[0]
         filter_map = [s.split(".") for s in filter_string.split("/")]
 
         required_tags = []
@@ -106,7 +108,11 @@ class FilterView(generic.ListView):
 
         entries = Entry.objects.all()
         for tag in required_tags:
-            entries = entries.filter(categories=tag)
+            if tag.children.all():
+                all_tags = list(tag.children.all()) + [tag]
+                entries = entries.filter(categories__in=all_tags)
+            else:
+                entries = entries.filter(categories=tag)
 
         context['entries'] = entries.order_by('-order', 'title')
         context['columns'] = Category.objects.filter(show=True).order_by('order', 'title')
