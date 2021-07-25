@@ -13,7 +13,7 @@ local_settings.py
 db.sqlite3
 
 # virtualenvs
-.env
+prod.env
 .venv
 env/
 venv/
