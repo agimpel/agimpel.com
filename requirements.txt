@@ -12,7 +12,7 @@ jsonfield==3.1.0
 jsonfield2==4.0.0.post0
 lazy-object-proxy==1.6.0
 mccabe==0.6.1
-Pillow==8.3.1
+Pillow==8.3.2
 pylint==2.9.5
 python-slugify==5.0.2
 pytz==2021.1
