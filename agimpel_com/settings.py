@@ -162,11 +162,11 @@ LOGGING = {
     'loggers': {
         'django': {
             'handlers': ['console'],
-            'level': 'DEBUG',
+            'level': 'WARNING',
         },
         'agimpel': {
             'handlers': ['console'],
-            'level': 'DEBUG',
+            'level': 'INFO',
         },
     },
 }

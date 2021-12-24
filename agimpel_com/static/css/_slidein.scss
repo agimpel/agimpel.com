@@ -1,6 +1,7 @@
 .come-in {
   transform: translateY(150px);
   animation: come-in 0.8s ease forwards;
+  visibility: visible !important;
 }
 .come-in:nth-child(odd) {
   animation-duration: 0.6s;
@@ -8,6 +9,11 @@
 .already-visible {
   transform: translateY(0);
   animation: none;
+  visibility: visible !important;
+}
+
+.sliding {
+  visibility: hidden;
 }
 
 @keyframes come-in {
