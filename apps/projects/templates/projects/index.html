@@ -5,5 +5,47 @@
 {% endblock content_title %}
 
 {% block content_body %}
-Work in progress.
+
+
+{% if projects %}
+    {% for project in projects %}
+        <div class="medium_heading"><span>{{ project.name }}</span></div>
+        {% if project.image %}
+        <div class="twocolumn">
+            <div class="column">
+                <img src="{{ project.image.url }}" alt="{{ project.name }}" style="max-width:300px;"/>
+            </div>
+            <div class="column">
+                {% endif %}
+                {% if project.description %}
+                    <div>{{ project.description }}{% if project.details %}<br><a href="{% url 'projects:detail' slug=project.slug %}"><b class="projects_learnmore">Learn more ...</b></a>{% endif %}</div>
+                    <div class="spacer xsmall"></div>
+                {% endif %}
+                {% if project.tags %}
+                    <div class="projects_list"><i class="fa-solid fa-tags" style="padding-right:10px"></i>{{ project.print_tags }}</div>
+                {% endif %}
+                {% if project.technologies %}
+                    <div class="projects_list"><i class="fa-solid fa-list" style="padding-right:10px"></i>{{ project.technologies }}</div>
+                {% endif %}
+                {% if project.github_url %}
+                    <div class="projects_list"><i class="fa-brands fa-github" style="padding-right:10px"></i><a href="{{ project.github_url }}">{{ project.github_url | cut:'https://'}}</a></div>
+                {% endif %}
+                {% if project.website_url %}
+                    <div class="projects_list"><i class="fa-solid fa-globe" style="padding-right:10px"></i><a href="{{ project.website_url }}">{{ project.website_url | cut:'https://'}}</a></div>
+                {% endif %}
+
+            {% if project.image %}
+            </div>
+        </div>
+        {% endif %}
+        
+        <div class="spacer"></div>
+    {% endfor %}
+{% else %}
+    <p>No projects found.</p>
+{% endif %}
+
+
+
+
 {% endblock content_body %}

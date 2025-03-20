@@ -25,11 +25,23 @@
     background-size: cover;
     animation: animatedBackground 30s ease-in-out alternate infinite;
     animation-delay: -15s;
-    transition: background 200ms ease-in-out 300ms;
+    --beforeOpacity: 0;
     
     // @include m-up {
     //     background-size: 135%;
     // }
+}
+
+#home-wrapper::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #2d2d2d;
+    transition: opacity 250ms ease-in-out;
+    opacity: var(--beforeOpacity);
 }
 
 #home-bg {

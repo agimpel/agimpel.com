@@ -2,7 +2,7 @@
     {% for photo in photos %}
         <figure class="sliding" style="grid-column-end: span {{ photo.photostream_cols }}; grid-row-end: span {{ photo.photostream_rows }}">
             <a href="{{ photo.picture.url }}" data-size="{{ photo.picture.width }}x{{ photo.picture.height }}">
-                <img src="{{ photo.thumbnail_1x.url }}" srcset="{{ photo.thumbnail_1x.url }}, {{ photo.thumbnail_2x.url }} 2x" title="{{ photo.title }}" />
+                <img loading="lazy" src="{{ photo.thumbnail_1x.url }}" srcset="{{ photo.thumbnail_1x.url }}, {{ photo.thumbnail_2x.url }} 2x" title="{{ photo.title }}" />
             </a>
             <figcaption style="display:none">
                 <p class="photo_title">{{ photo.title }}</p>

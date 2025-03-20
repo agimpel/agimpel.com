@@ -1,0 +1,53 @@
+{% extends 'main.html' %}
+
+{% block add_head %}
+{% endblock add_head %}
+
+{% block menu %}
+    {% include 'menu.html' with menu_active='' %}
+{% endblock menu %}
+
+{% block add_foot %}
+{% endblock add_foot %}
+
+{% block content_title %}
+    {% include 'large_heading.html' with title="Imprint" %}
+{% endblock content_title %}
+
+{% block content_body %}
+
+<div class="medium_heading"><span>Contact information</span></div>
+Andreas Gimpel<br>
+Primelstrasse 8<br>
+8046 Zürich<br>
+SWITZERLAND<br>
+<br>
+Email: webmaster(at)<span id="mail_suffix"></span><br>
+Phone: +CH (0)76 517 27 74<br>
+
+<script>
+// get the mail_suffix span by id
+var mail_suffix = document.getElementById("mail_suffix");
+// set the innerHTML of the mail_suffix span to the domain of the current window   
+mail_suffix.innerHTML = window.location.hostname;
+</script>
+
+<div class="spacer medium"></div>
+
+<div class="medium_heading"><span>Disclaimer</span></div>
+The website owner assumes no liability for the accuracy, reliability and completeness of this webiste.
+Any claims against the website owner for both material and immaterial damage resulting from accessing or using this website are excluded.
+All offers and statements on this website are non-binding. The website owner reserves the right to change, add, or delete parts of this website without notice.
+The website owner is not responsible for links to other, third-party websites.
+Andreas Gimpel is the sole holder of copyright and all other rights to content, including text and images, on this website. Written consent must be obtained in advance for the reproduction of any content.
+
+<div class="spacer medium"></div>
+
+<div class="medium_heading"><span>Privacy policy</span></div>
+Personal data collected on this website is treated with greatest confidentiality, according to the data security regulations and this privacy policy.
+The web server for this website automatically collects and stores access data in log files, based on information automatically communicated to it by your browser. This may include 
+your browser type, the browser version, the operating system, any referrer URL, the accessing computer's IP address, the time of the server inquiry, and the time of the website visit.
+This information cannot be used and will not be used to track individual users. A matching of the disclosed data with other data sources is not performed. The collected data is used exclusively to ensure fault-free operations of this website.
+The website owner reserves the right to change this privacy policy at any time. The current version of the privacy policy is always available on this website.
+
+{% endblock content_body %}

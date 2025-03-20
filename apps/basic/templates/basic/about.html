@@ -4,16 +4,271 @@
 {% endblock add_head %}
 
 {% block menu %}
-    {% include 'menu.html' with menu_active='' %}
+    {% include 'menu.html' with menu_active='about' %}
 {% endblock menu %}
 
 {% block add_foot %}
 {% endblock add_foot %}
 
 {% block content_title %}
-    {% include 'large_heading.html' with title="About" %}
+    {% include 'large_heading.html' with title="About me" %}
 {% endblock content_title %}
 
 {% block content_body %}
-Work in progress.
+
+<div class="twocolumn">
+    <div class="column" style="text-align:center;;">
+        <img src="/static/basic/about.jpg" style="width:300px;max-width:100%;border-radius:6px;padding:auto;">
+    </div>
+    <div class="column">
+        <div class="subheading" style="max-width:470px">
+            I'm Andreas Gimpel, a chemical engineer by training, a doctoral candidate by profession, and a photographer and programmer by passion.
+        </div>
+        <div class="spacer medium"></div>
+        
+        
+        <a href="/gallery" style="padding-right:30px"><div class="button" style="width:220px;">See my photography</div></a>
+        <a href="/projects"><div class="button" style="width:220px;">See my projects</div></a>
+
+        <div class="spacer medium"></div>   
+        <a class="" href="https://ch.linkedin.com/in/andreas-gimpel"><i class="fa-brands fas fa-linkedin" style="padding-right:6pt;"></i>linkedin.com/in/andreas-gimpel</a><br>
+        <div class="spacer" style="height:6px;"></div>
+        <a class="" href="https://github.com/agimpel"><i class="fa-brands fas fa-github" style="padding-right:6pt;"></i>github.com/agimpel</a><br>
+        <div class="spacer" style="height:6px;"></div>
+        <a class="" href="https://orcid.org/0000-0002-8890-3292"><i class="fa-brands fas fa-orcid" style="padding-right:6pt;"></i>orcid.org/0000-0002-8890-3292</a><br>
+        <div class="spacer" style="height:6px;"></div>
+        <a class="" href="https://scholar.google.com/citations?user=N0JflFoAAAAJ" ><i class="fa-brands fas fa-google-scholar" style="padding-right:6pt;"></i>Google Scholar profile</a><br>
+    </div>
+</div>
+
+
+<div class="spacer medium"></div>
+
+<div class="medium_heading"><span>Education</span></div>
+<div class="twocolumn">
+    <div class="column">
+        2021-2025
+    </div>
+    <div class="column">
+        <b>Doctoral Candidate in Chemical and Bioengineering</b><br>
+        <i>ETH Zürich, Zürich, Switzerland</i><br>
+        <i>PhD Thesis: "Digital Twins and Data Analytics for (Bio-)Chemical Processes in DNA Data Storage"</i>
+    </div>
+</div><br>
+<div class="twocolumn">
+    <div class="column">
+        2020
+    </div>
+    <div class="column">
+        <b>Exchange Semester</b><br>
+        <i>Massachusetts Institute of Technology, Cambridge, USA</i><br>
+        <i>Master Thesis: "Investigating Crystallization as Separation Process for Biomanufacturing of rAAV"</i>
+    </div>
+</div><br>
+<div class="twocolumn">
+    <div class="column">
+        2018-2020
+    </div>
+    <div class="column">
+        <b>M.Sc. ETH Chemical and Bioengineering</b><br>
+        <i>ETH Zürich, Zürich, Switzerland</i>
+    </div>
+</div><br>
+<div class="twocolumn">
+    <div class="column">
+        2015-2018
+    </div>
+    <div class="column">
+        <b>B.Sc. ETH Chemical Engineering</b><br>
+        <i>ETH Zürich, Zürich, Switzerland</i>
+    </div>
+</div>
+
+
+<div class="spacer medium"></div>
+
+<div class="medium_heading"><span>Experience</span></div>
+<div class="twocolumn">
+    <div class="column">
+        2021
+    </div>
+    <div class="column">
+        <b>Intern in Technical Operations</b><br>
+        <i>F. Hoffmann - La Roche, Basel, Switzerland</i>
+    </div>
+</div><br>
+<div class="twocolumn">
+    <div class="column">
+        2020
+    </div>
+    <div class="column">
+        <b>Intern in Software Development</b><br>
+        <i>diaxxo AG, Zürich, Switzerland</i>
+    </div>
+</div><br>
+<div class="twocolumn">
+    <div class="column">
+        2015
+    </div>
+    <div class="column">
+        <b>Intern in Analytical Chemistry</b><br>
+        <i>MainSite GmbH, Obernburg, Germany</i>
+    </div>
+</div>
+
+
+
+<div class="spacer medium"></div>
+
+<div class="medium_heading"><span>Skills</span></div>
+<div class="twocolumn">
+    <div class="column" style="min-width: 155px;">
+        Data analysis
+    </div>
+    <div class="column">
+        Interactive visualizations (Plotly/Dash), statistical inference and modelling (scipy/sklearn), basic machine learning (pytorch), cheminformatics (rdkit)
+    </div>
+</div><br>
+<div class="twocolumn">
+    <div class="column" style="min-width: 155px;">
+        Programming
+    </div>
+    <div class="column">
+        Python (advanced); C++, MATLAB (intermediate); SQL, R, PHP, JavaScript (basic)
+    </div>
+</div><br>
+<div class="twocolumn">
+    <div class="column" style="min-width: 155px;">
+        Web Development
+    </div>
+    <div class="column">
+        HTML, CSS, JavaScript, Flask, Django, Bootstrap, jQuery, Plotly/Dash
+    </div>
+</div><br>
+<div class="twocolumn">
+    <div class="column" style="min-width: 155px;">
+        Software
+    </div>
+    <div class="column">
+        COMSOL, Aspen, Microsoft Office, Adobe Creative Suite, SolidWorks, LabView
+    </div>
+</div><br>
+<div class="twocolumn">
+    <div class="column" style="min-width: 155px;">
+        Methods
+    </div>
+    <div class="column">
+        NMR, IR, UV‑Vis, SEM, EDX, XRPD, Shear Testing, DSC, DLS, qPCR, PAGE, Illumina Sequencing
+    </div>
+</div>
+
+
+
+<div class="spacer medium"></div>
+
+<div class="medium_heading"><span>Languages</span></div>
+<div class="twocolumn">
+    <div class="column">
+        German
+    </div>
+    <div class="column">
+        Native
+    </div>
+</div><br>
+<div class="twocolumn">
+    <div class="column">
+        English
+    </div>
+    <div class="column">
+        Fluent (C2)
+    </div>
+</div><br>
+<div class="twocolumn">
+    <div class="column">
+        French
+    </div>
+    <div class="column">
+        Basic (A2)
+    </div>
+</div>
+
+
+
+<div class="spacer medium"></div>
+
+<div class="medium_heading"><span>Honors & Awards</span></div>
+<div class="twocolumn">
+    <div class="column">
+        2021
+    </div>
+    <div class="column">
+        Willi Studer Prize of ETH Zurich
+    </div>
+</div><br>
+<div class="twocolumn">
+    <div class="column">
+        2021
+    </div>
+    <div class="column">
+        Helping Hand Award
+    </div>
+</div><br>
+<div class="twocolumn">
+    <div class="column">
+        2020
+    </div>
+    <div class="column">
+        Scholar of the Zeno‑Karl Schindler Foundation
+    </div>
+</div><br>
+<div class="twocolumn">
+    <div class="column">
+        2018 & 2020
+    </div>
+    <div class="column">
+        Graduation with distinction from ETH Zurich
+    </div>
+</div><br>
+<div class="twocolumn">
+    <div class="column">
+        2015-2020
+    </div>
+    <div class="column">
+        Scholar of the German Academic Scholarship Foundation
+    </div>
+</div>
+
+
+
+<div class="spacer medium"></div>
+
+<div class="medium_heading"><span>Extracurriculars</span></div>
+<div class="twocolumn">
+    <div class="column">
+        2023-2024
+    </div>
+    <div class="column">
+        Member of the Board, Akademischer Sportverband Zürich (ASVZ) 
+    </div>
+</div><br>
+<div class="twocolumn">
+    <div class="column">
+        2023
+    </div>
+    <div class="column">
+        Exam Author, International Chemistry Olympiad 2023 
+    </div>
+</div><br>
+<div class="twocolumn">
+    <div class="column">
+        2018-2019
+    </div>
+    <div class="column">
+        Co‑President, Chemtogether Career Fair
+    </div>
+</div>
+
+<div class="spacer medium"></div>
+
+
 {% endblock content_body %}

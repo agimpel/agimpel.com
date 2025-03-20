@@ -67,7 +67,7 @@
 
 #title span {
   font-family: "Merriweather", serif;
-  font-size: 20px;
+  font-size: 25px;
 
   @include s-up {
     font-size: 30px;
@@ -116,14 +116,24 @@
 
   span {
     font-family: 'Montserrat', sans-serif;  
-    font-size: 16px;
+    font-size: 20px;
 
     @include s-up {
-      font-size: 20px;
+      font-size: 22px;
     }
     @include m-up {
       font-size: 25px;
     }
+  }
+}
+
+
+.subheading {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  padding-bottom: 10px;
+  @include m-up {
+    font-size: 20px;
   }
 }
 
@@ -157,5 +167,61 @@ div.spacer {
     @include m-up {
       height: 40px;
     }
+  }
+}
+
+
+div.twocolumn {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-align: left;
+
+  @include m-up {
+    justify-content: space-between;
+  }
+
+  :nth-child(1).column {
+    width: 100%;
+    margin-bottom: 10px;
+
+    @include m-up {
+      width: fit-content;
+      min-width: 100px;
+      margin-bottom: 0px;
+    }
+  }
+
+  :nth-child(2).column {
+    width: 100%;
+    margin-bottom: 0px;
+    padding-left: 0%;
+
+    @include m-up {
+      padding-left: 3%;
+      width: 48%;
+      max-width: 95%;
+      flex-grow: 10;
+    }
+  }
+}
+
+
+div.button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px 0px;
+  border: 1px solid #edb88b;
+  border-radius: 5px;
+  background-color: #edb88b;
+  color: $text;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid $text;
   }
 }

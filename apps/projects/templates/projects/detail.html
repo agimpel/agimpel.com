@@ -1,0 +1,46 @@
+{% extends 'projects/main.html' %}
+
+{% block content_title %}
+    {% include 'large_heading.html' with title=title %}
+{% endblock content_title %}
+
+{% block content_body %}
+
+{% if project.description %}
+    <div class="subheading">{{ project.description }}</div>
+    <div class="spacer xsmall"></div>
+{% endif %}
+
+{% if project.image %}
+<div class="twocolumn">
+    <div class="column">
+        <img src="{{ project.image.url }}" alt="{{ project.name }}" style="max-width:300px;"/>
+    </div>
+    <div class="column">
+        {% endif %}
+        {% if project.tags %}
+            <div class="projects_list"><i class="fa-solid fa-tags" style="padding-right:10px"></i>{{ project.print_tags }}</div>
+        {% endif %}
+        {% if project.technologies %}
+            <div class="projects_list"><i class="fa-solid fa-list" style="padding-right:10px"></i>{{ project.technologies }}</div>
+        {% endif %}
+        {% if project.github_url %}
+            <div class="projects_list"><i class="fa-brands fa-github" style="padding-right:10px"></i><a href="{{ project.github_url }}">{{ project.github_url | cut:'https://'}}</a></div>
+        {% endif %}
+        {% if project.website_url %}
+            <div class="projects_list"><i class="fa-solid fa-globe" style="padding-right:10px"></i><a href="{{ project.website_url }}">{{ project.website_url | cut:'https://'}}</a></div>
+        {% endif %}
+
+    {% if project.image %}
+    </div>
+</div>
+{% endif %}
+        
+<div class="spacer medium"></div>
+
+{% if project.details %}
+    <div class="projects_details">{{ project.details | safe }}</div>
+    <div class="spacer medium"></div>
+{% endif %}
+
+{% endblock content_body %}

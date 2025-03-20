@@ -38,8 +38,8 @@ def index(request):
 def about(request):
 
     context = {
-        'title': 'About',
-        'nav_title': [['about', None]],
+        'title': 'About me',
+        'nav_title': [['about me', None]],
     }
 
     return render(request, 'basic/about.html', context=context)
@@ -47,11 +47,11 @@ def about(request):
 
 
 
-def contact(request):
+def imprint(request):
 
     context = {
-        'title': 'Contact',
-        'nav_title': [['contact', None]],
+        'title': 'Imprint',
+        'nav_title': [['imprint', None]],
     }
 
-    return render(request, 'basic/contact.html', context=context)
+    return render(request, 'basic/imprint.html', context=context)

@@ -1,3 +1,16 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Project, Tag
+
+
+class TagAdmin(admin.ModelAdmin):
+    list_display = ('name', 'order')
+    search_fields = ['name', 'order']
+
+class ProjectAdmin(admin.ModelAdmin):
+    list_display = ('name', 'order')
+    search_fields = ['name', 'order']
+
+
+admin.site.register(Tag, TagAdmin)
+admin.site.register(Project, ProjectAdmin)

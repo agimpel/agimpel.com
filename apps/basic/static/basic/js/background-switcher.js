@@ -14,15 +14,35 @@ function preload(arrayOfImages) {
     });
 }
 
-var assignBackground = function() {
-    // set the new image url in css
-    bg_object.css('background-image', 'url(' + backgrounds[i_background] + ')');
 
-    // update the image switcher counter
-    counter_object.text((i_background+1) + ' / ' + (number_backgrounds));
+var resetOpacity = function() {
+    // set the opacity of the before element to 0
+    bg_object.css('--beforeOpacity', 0);
+}
 
-    // update the image title
-    title_object.text(titles[i_background])
+
+var assignBackground = function(i) {
+    bg_object.css('background-image', 'url(' + backgrounds[i] + ')');
+    counter_object.text((i+1) + ' / ' + (number_backgrounds));
+    title_object.text(titles[i]);
+
+    // reset the opacity of the before element to 0
+    setTimeout(function() {
+        resetOpacity();
+    }
+    , 100);
+}
+
+
+var changeBackground = function() {
+    // set the opacity of the before element to 1
+    bg_object.css('--beforeOpacity', 1);
+
+    // wait for 200 ms, then change the background
+    setTimeout(function() {
+        assignBackground(i_background);
+    }
+    , 200);
 }
 
 
@@ -32,7 +52,7 @@ var incrementBackground = function() {
     if (i_background >= number_backgrounds) {
         i_background = 0;
     }
-    assignBackground();
+    changeBackground();
 };
 
 
@@ -41,7 +61,7 @@ var decrementBackground = function() {
     if (i_background < 0) {
         i_background = number_backgrounds-1;
     }
-    assignBackground();
+    changeBackground();
 };
 
 
