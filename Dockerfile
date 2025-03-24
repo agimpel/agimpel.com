@@ -21,18 +21,15 @@ RUN set -ex \
 
 # copy all of the code files
 COPY . .
-RUN chmod -R 777 *
+RUN chmod -R 700 *
 RUN chown -R appuser:appuser /app
 
 # set up the virtual environment
 ENV VIRTUAL_ENV /env
 ENV PATH /env/bin:$PATH
 
-# prepare the Django server
-RUN export DJANGO_KEY="default" && export DJANGO_ALLOWED_HOSTS="localhost" && export DJANGO_DEBUG=0 && python manage.py collectstatic --noinput
-
 # expose the port for uWSGI
-EXPOSE 80
+EXPOSE 8000
 
 # change to app user
 USER appuser
