@@ -1,6 +1,6 @@
 asgiref==3.8.1
 choicesenum==0.7.0
-Django==5.1.7
+Django==5.1.14
 django-cleanup==9.0.0
 django-exiffield==3.0.0
 django-jsonfield==1.4.1
