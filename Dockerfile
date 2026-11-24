@@ -1,38 +1,54 @@
+
 FROM python:3.13-slim
 
-# set python environment variables
-ENV PYTHONUNBUFFERED 1
-ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    UV_COMPILE_BYTECODE=1 \
+    UV_LINK_MODE=copy \
+    PATH="/app/.venv/bin:$PATH"
 
-# Create a group and user to run our app
-RUN groupadd -r appuser && useradd --no-log-init -r -g appuser appuser
+# System dependencies and uv
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        build-essential \
+        python3-dev \
+    && pip install --no-cache-dir uv \
+    && rm -rf /var/lib/apt/lists/*
 
-# make and change into working directory
-RUN mkdir /app
+# Create application user
+RUN groupadd -r appuser \
+    && useradd --no-log-init -r -g appuser appuser \
+    && mkdir -p /app
+
 WORKDIR /app
 
-# copy and install requirements
-COPY ./requirements.txt .
-RUN apt-get update && apt-get install -y build-essential python3-dev mime-support
-RUN set -ex \
-    && python -m venv /env \
-    && /env/bin/pip install --upgrade pip \
-    && /env/bin/pip install --no-cache-dir -r /app/requirements.txt
+# Copy dependency metadata
+COPY pyproject.toml uv.lock ./
 
-# copy all of the code files
+# Install dependencies
+RUN uv sync --frozen --no-dev --no-install-project
+
+# Copy application source
 COPY . .
-RUN chmod -R 700 *
-RUN chown -R appuser:appuser /app
 
-# set up the virtual environment
-ENV VIRTUAL_ENV /env
-ENV PATH /env/bin:$PATH
+# Install project
+RUN uv sync --frozen --no-dev
 
-# expose the port for uWSGI
+# Permissions
+RUN chown -R appuser:appuser /app \
+    && chmod -R u=rwX,g=rX,o= /app
+
 EXPOSE 8000
 
-# change to app user
 USER appuser
 
-# run the uwsgi server
-CMD ["uwsgi", "uwsgi.ini"]
+# Start Gunicorn
+CMD ["gunicorn", \
+     "--bind=0.0.0.0:8000", \
+     "--workers=2", \
+     "--worker-class=gthread", \
+     "--threads=2", \
+     "--max-requests=5000", \
+     "--access-logfile=-", \
+     "--error-logfile=-", \
+     "agimpel_com.wsgi:application"]

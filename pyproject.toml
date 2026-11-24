@@ -1,0 +1,17 @@
+[project]
+name = "agimpel-com"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = [
+    "django>=5.2.19",
+    "django-cleanup>=9.0.0",
+    "django-exiffield>=4.0.0",
+    "django-jsonfield>=1.4.1",
+    "exifread>=3.5.1",
+    "gunicorn>=27.0.1",
+    "python-slugify>=9.2.0",
+    "whitenoise>=6.12.0",
+]
+
+[tool.uv]
+package = false
