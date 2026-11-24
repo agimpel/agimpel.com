@@ -42,13 +42,5 @@ EXPOSE 8000
 
 USER appuser
 
-# Start Gunicorn
-CMD ["gunicorn", \
-     "--bind=0.0.0.0:8000", \
-     "--workers=2", \
-     "--worker-class=gthread", \
-     "--threads=2", \
-     "--max-requests=5000", \
-     "--access-logfile=-", \
-     "--error-logfile=-", \
-     "agimpel_com.wsgi:application"]
+# run the uwsgi server
+CMD ["uwsgi", "uwsgi.ini"]
